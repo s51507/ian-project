@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-const igMenuProvider = Vue.observable({
+import { provide } from "vue"
+const igMenuProvider = provide({
   active: null,
   width: null,
   btnsMounted: false,

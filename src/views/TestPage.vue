@@ -20,9 +20,7 @@ import {
   onBeforeUnmount,
   onUnmounted,
 } from 'vue'
-import icBtn from '../plugins/ian-components/ic-btn.vue'
 export default {
-  components: { icBtn },
   props: {
     value: String
   },

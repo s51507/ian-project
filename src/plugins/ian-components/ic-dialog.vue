@@ -19,15 +19,15 @@
               <div ref="text" :style="contentStyle"> <slot name="content" /> </div>
 
               <div v-if="btns.length" class="ic-dialog-main__btns">
-                <IgBtn
-                  :class="[ 'ic-dialog__btn', { 'ic-dialog__btn--grow': btnGrow } ]"
+                <IcBtn
                   v-for="btn in btns"
                   :key="btn.id"
+                  :class="[ 'ic-dialog__btn', btnGrow ? 'ic-dialog__btn--grow' : '' ]"
                   :outlined="btn.outlined"
                   @click="handleBtnClick(btn)"
                 >
                   {{ btn.text }}
-                </IgBtn>
+                </IcBtn>
               </div>
 
               <div class="ic-dialog-main__btnSlot" v-else-if="this.$slots.btns">
@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import IgBtn from '@/components/ic-button'
+import IcBtn from './ic-btn.vue'
 export default {
   components: {
-    IgBtn,
+    IcBtn,
   },
   props: {
     value: Boolean,

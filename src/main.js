@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+import IanComponents from '@/plugins/ian-components/index.js'
 
 const app = createApp(App)
 
@@ -19,5 +20,9 @@ app.config.globalProperties.$colors = theme
 
 app.use(createPinia())
 app.use(router)
+
+Object.entries(IanComponents).map(([name, component]) => {
+  app.component(name, component)
+})
 
 app.mount('#app')

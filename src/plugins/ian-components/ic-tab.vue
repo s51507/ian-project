@@ -126,9 +126,9 @@ export default {
   }
 }
 
-.ic-tab.ic-tab--outlined {
-  // border: 1px solid var(--ic-tab-border-color);
-}
+// .ic-tab.ic-tab--outlined {
+//   // border: 1px solid var(--ic-tab-border-color);
+// }
 
 .ic-tab.ic-tab--active {
   color: var(--secondary);

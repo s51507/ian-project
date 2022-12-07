@@ -1,5 +1,5 @@
 <template>
-  <div :class="['input-num-password']">
+  <div class="input-num-password">
     <div class="flex-layout-row outter">
       <div class="field-title flex-layout-row">{{title}}</div>
       <div class="flex-layout-row numbers">

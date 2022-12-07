@@ -8,7 +8,7 @@
       :key="idx"
       :class="$style.flex"
     >
-      <IgBtn
+      <IcBtn
         v-for="button in col"
         :key="button.value"
         :class="$style.button"
@@ -20,17 +20,17 @@
         depressed
       >
         <span :style="showFontColor(button)"> {{ showFontText(button) }} </span>
-      </IgBtn>
+      </IcBtn>
     </div>
   </div>
 </template>
 
 <script>
-import IgBtn from '@/components/ic-button'
+import IcBtn from './ic-btn.vue'
 
 export default {
   components: {
-    IgBtn,
+    IcBtn,
   },
   props: {
     value: {

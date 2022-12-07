@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-const igTabsProvider = Vue.observable({
+import { provide } from "vue"
+const igTabsProvider = provide({
   active: null,
   width: null,
   btnsMounted: false,
