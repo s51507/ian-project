@@ -1,9 +1,9 @@
 <template>
-  <div class="item">
+  <div :class="$style.item">
     <i>
       <slot name="icon"></slot>
     </i>
-    <div class="details">
+    <div :class="$style.details">
       <h3>
         <slot name="heading"></slot>
       </h3>
@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" module>
 .item {
   margin-top: 2rem;
   display: flex;
