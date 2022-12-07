@@ -9,6 +9,7 @@ import router from './router'
 
 import './assets/main.css'
 import IanComponents from '@/plugins/ian-components/index.js'
+import Ripple from '@/utils/ripple.js'
 
 const app = createApp(App)
 
@@ -20,6 +21,8 @@ app.config.globalProperties.$colors = theme
 
 app.use(createPinia())
 app.use(router)
+
+app.directive('ripple', Ripple)
 
 Object.entries(IanComponents).map(([name, component]) => {
   app.component(name, component)

@@ -1,5 +1,5 @@
 <template>
-  <div :class="parseClass" :style="parseStyle" @click="handleBtnClick">
+  <div :class="parseClass" :style="parseStyle" @click="handleBtnClick" v-ripple>
     <slot />
   </div>
 </template>

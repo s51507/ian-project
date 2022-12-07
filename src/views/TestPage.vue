@@ -3,7 +3,7 @@
     <div>state {{ state.count }} {{ state.double }}</div>
     <div>three {{ three }}</div>
     <div>refnum {{ refnum }}</div>
-    <ic-btn @click="increment">increment click me!</ic-btn>
+    <IcBtn @click="increment">increment click me!</IcBtn>
     <div>color {{ $colors.primary }}</div>
   </div>
 </template>
