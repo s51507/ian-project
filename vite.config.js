@@ -22,6 +22,11 @@ export default defineConfig({
     //   fileRegex: /.ts$|.js$|.vue$/
     // })
   ],
+  css: {
+    modules: {
+      localsConvention: 'camelCase'
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

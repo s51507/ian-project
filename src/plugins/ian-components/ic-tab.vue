@@ -5,10 +5,10 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 
 export default {
-  inheritAttrs: false,
-  inject: ['igTabsProvider'],
+  inject: ['icTabsProvider'],
   props: {
     item: [String, Number, Object],
     width: [Number, String], // 寬度
@@ -24,9 +24,10 @@ export default {
       default: true
     }, // outlined樣式
   },
-  data() {
+  setup() {
+    const active = ref(false)
     return {
-      active: false
+      active,
     }
   },
   computed: {
@@ -41,8 +42,8 @@ export default {
       const { color, background, borderColor } = this.genColors()
       const height = this.checkNumber(this.height || 40)
       return {
-        '--ic-tab-width': this.checkNumber(this.width || this.igTabsProvider.width),
-        '--ic-tab-min-width': this.checkNumber(this.minWidth || this.width || this.igTabsProvider.width),
+        '--ic-tab-width': this.checkNumber(this.width || this.icTabsProvider.width),
+        '--ic-tab-min-width': this.checkNumber(this.minWidth || this.width || this.icTabsProvider.width),
         '--ic-tab-height': height,
         '--ic-tab-color': color,
         '--ic-tab-border-color': borderColor,
@@ -52,8 +53,8 @@ export default {
     },
   },
   watch: {
-    'igTabsProvider.active'() {
-      const activeItem = this.igTabsProvider.active
+    'icTabsProvider.active'() {
+      const activeItem = this.icTabsProvider.active
       switch (typeof this.item) {
         case 'string':
         case 'number':
@@ -92,13 +93,13 @@ export default {
     }
   },
   mounted() {
-    this.igTabsProvider.btnsMounted = true
+    this.icTabsProvider.btnsMounted = true
   },
   beforeUpdate() {
-    this.igTabsProvider.btnsMounted = false
+    this.icTabsProvider.btnsMounted = false
   },
   updated() {
-    this.igTabsProvider.btnsMounted = true
+    this.icTabsProvider.btnsMounted = true
   },
 }
 </script>

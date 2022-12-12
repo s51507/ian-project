@@ -7,7 +7,6 @@
 <script>
 
 export default {
-  inheritAttrs: false,
   props: {
     width: [Number, String], // 寬度
     height: [Number, String], // 高度

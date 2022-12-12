@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$style.main, !isCn && $style['main-en']]">
+  <div :class="$style.main">
     <div ref="tabsContainer">
       <!-- 因為btn的item格式並非一定會統一，所以用solt的方式讓外面去決定要怎麼顯示 -->
       <slot />
@@ -9,29 +9,41 @@
 </template>
 
 <script>
-import { provide } from "vue"
-const igTabsProvider = provide({
-  active: null,
-  width: null,
-  btnsMounted: false,
-})
+import { provide, reactive, computed, ref } from 'vue'
 
 export default {
-  provide: {
-    igTabsProvider
-  },
   props: {
-    value: [String, Number, Object],
+    modelValue: [String, Number, Object],
     autoWidth: Boolean
   },
-  data() {
+  setup() {
+    const icTabsReactive = reactive({
+      active: null,
+      width: null,
+      btnsMounted: false,
+    })
+
+    const activeBarLeft = ref('0px')
+    const activeBarWidth = ref('0px')
+
+    provide('icTabsProvider', icTabsReactive)
+
+    const genActiveBarStyle = computed(() => {
+      return {
+        left: activeBarLeft.value,
+        width: activeBarWidth.value,
+      }
+    })
+
     return {
-      activeBarLeft: '0px',
-      activeBarWidth: '0px',
+      activeBarLeft,
+      activeBarWidth,
+      genActiveBarStyle,
+      icTabsProvider: icTabsReactive
     }
   },
   watch: {
-    value() {
+    modelValue() {
       this.$nextTick(() => this.findActiveNode())
     },
     btnsMounted() {
@@ -43,14 +55,8 @@ export default {
   },
   computed: {
     btnsMounted() {
-      return igTabsProvider.btnsMounted
+      return this.icTabsProvider.btnsMounted
     },
-    genActiveBarStyle() {
-      return {
-        left: this.activeBarLeft,
-        width: this.activeBarWidth
-      }
-    }
   },
   methods: {
     scrollToCenter(target) {
@@ -72,13 +78,15 @@ export default {
       if (!this.btnsMounted) return
       if (!this.$slots.default) return
 
-      const nodes = Array.from(this.$slots.default)
-      const activeAtrgetNode = nodes.find(node => this.judgeIsActive(node.componentOptions.propsData.item))
-      if (!activeAtrgetNode) return
+      const eles = Array.from(this.$refs.tabsContainer.getElementsByClassName('ic-tab'))
+      const nodes = Array.from(this.$slots.default()[0]?.children)
+      const activeTargetNodeIndex = nodes.findIndex(node => this.judgeIsActive(node.props.item))
+      const activeTargetEle = eles[activeTargetNodeIndex]
+      if (!activeTargetEle) return
 
-      igTabsProvider.active = activeAtrgetNode.componentOptions.propsData.item
-      this.scrollToCenter(activeAtrgetNode.elm)
-      this.moveActiveBar(activeAtrgetNode.elm)
+      this.icTabsProvider.active = nodes[activeTargetNodeIndex].props.item
+      this.scrollToCenter(activeTargetEle)
+      this.moveActiveBar(activeTargetEle)
 
     },
     // 因為btn的item格式並非一定會統一，所以需要先判定格式後再處理
@@ -86,11 +94,11 @@ export default {
       switch (typeof item) {
         case 'string':
         case 'number':
-          return item === this.value
+          return item === this.modelValue
         default:
           // 單一btn的item應該不會有array的情況出現，故這邊都是當作object處理
-          if (item === this.value) return true
-          return Object.values(item).some(val => String(val) === String(this.value))
+          if (item === this.modelValue) return true
+          return Object.values(item).some(val => String(val) === String(this.modelValue))
       }
     },
     calWidth() {
@@ -100,7 +108,7 @@ export default {
       if (MaxWidth < 60) MaxWidth = 60
       if (MaxWidth > 190) MaxWidth = 190
 
-      igTabsProvider.width = MaxWidth
+      this.icTabsProvider.width = MaxWidth
     }
   },
   mounted() {
@@ -132,11 +140,6 @@ export default {
       background-color: var(--secondary);
       transition: .3s;
     }
-  }
-  &-en > div > div {
-    font-size: 12px;
-    letter-spacing: 0px;
-    margin-right: 6px;
   }
 }
 

@@ -3,12 +3,12 @@
     <span style="cursor: pointer" ref="target">
       <slot />
     </span>
-    <Portal to="app" :order="_uid">
+    <teleport to="#app">
       <div :class="$style.tip" :style="tipStyle" ref="tip">
         {{ tip }}
         <slot name="tip" />
       </div>
-    </Portal>
+    </teleport>
   </div>
 </template>
 
@@ -113,7 +113,7 @@ export default {
         default:
           // top = 對象距離螢幕top + 對象的高 + 箭頭高度 + 預留空間
           top = targetInfo.top + targetInfo.height + 5 + 5
-          calcLeft = targetInfo.left - (Math.abs(tipWidth - targetInfo.width) / 2)
+          calcLeft = targetInfo.left + (Math.abs(tipWidth - targetInfo.width) / 2)
 
           // 校正位置
           offsetX = this.calcOffsetX(calcLeft, tipInfo)
@@ -157,7 +157,7 @@ export default {
 
 <style lang="scss" module>
 .tip {
-  position: absolute;
+  position: fixed;
   // width: 500px;
   // height: 500px;
   padding: 10px;

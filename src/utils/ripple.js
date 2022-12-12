@@ -14,7 +14,7 @@ const defaults = {
   clearingDuration: '1s',
   clearingDelay: '0s',
   clearingTimingFunction: 'ease-in-out',
-};
+}
 
 /**
  * Creates a ripple element but does not destroy it (use RippleStop for that)
@@ -88,39 +88,39 @@ function RippleStop(ripple) {
  * @param node {Element}
  */
 export default (node, _options = {}) => {
-  console.log('###node', node)
-  let options = _options;
-  let destroyed = false;
-  let ripple;
-  let keyboardActive = false;
+  // console.log('###node', node)
+  let options = _options
+  let destroyed = false
+  let ripple
+  let keyboardActive = false
   const nodePosition = node.style.position
   const nodeOverflow = node.style.overflow
 
   const handleStart = (e) => {
-    ripple = RippleStart(e, options);
-  };
-  const handleStop = () => RippleStop(ripple);
+    ripple = RippleStart(e, options)
+  }
+  const handleStop = () => RippleStop(ripple)
   const handleKeyboardStart = (e) => {
     if (!keyboardActive && (e.keyCode === 13 || e.keyCode === 32)) {
-      ripple = RippleStart(e, { ...options, centered: true });
-      keyboardActive = true;
+      ripple = RippleStart(e, { ...options, centered: true })
+      keyboardActive = true
     }
-  };
+  }
   const handleKeyboardStop = () => {
-    keyboardActive = false;
-    handleStop();
-  };
+    keyboardActive = false
+    handleStop()
+  }
 
   function setup() {
     node.style.position = 'relative'
     node.style.overflow = 'hidden'
-    node.classList.add('s-ripple-container');
-    node.addEventListener('pointerdown', handleStart);
-    node.addEventListener('pointerup', handleStop);
-    node.addEventListener('pointerleave', handleStop);
-    node.addEventListener('keydown', handleKeyboardStart);
-    node.addEventListener('keyup', handleKeyboardStop);
-    destroyed = false;
+    node.classList.add('s-ripple-container')
+    node.addEventListener('pointerdown', handleStart)
+    node.addEventListener('pointerup', handleStop)
+    node.addEventListener('pointerleave', handleStop)
+    node.addEventListener('keydown', handleKeyboardStart)
+    node.addEventListener('keyup', handleKeyboardStop)
+    destroyed = false
   }
 
   function destroy() {

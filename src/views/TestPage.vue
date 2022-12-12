@@ -24,10 +24,13 @@ export default {
   props: {
     value: String
   },
-  setup() {
+  setup(props, context) {
     const  { proxy } = getCurrentInstance()
     // 要這樣才能拿到vue2的this
     console.log(proxy.$colors)
+
+    // emit在這
+    console.log(context.emit)
 
     const state = reactive({
       count: 1,
@@ -72,6 +75,13 @@ export default {
       three,
       refnum
     }
+  },
+  // 生命週期也可寫在外面
+  beforeMount() {
+    console.log('outSide beforeMount')
+  },
+  mounted() {
+    console.log('outSide mounted')
   },
 }
 </script>
