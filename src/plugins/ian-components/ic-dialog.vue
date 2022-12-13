@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="this.$slots.ctrlBtn" @click="() => handleDialogChanged(true)"><slot name="ctrlBtn" /></div>
-      <Portal to="app" :order="_uid">
+      <Teleport to="#app">
         <transition name="fade">
           <div :class="['ic-dialog', contentClass]" v-if="dialog" :style="genStyle">
             <div class="ic-dialog-mask" @click="maskCkick"></div>
@@ -12,7 +12,7 @@
                   <div>{{ title }}</div>
                   <slot name="title"/>
                 </div>
-                <svgicon v-if="close" name="close" class="ic-dialog-main__close-btn" :color="closeColor" :style="iconStyle" @click="handleDialogChanged(false)"/>
+                <!-- <svgicon v-if="close" name="close" class="ic-dialog-main__close-btn" :color="closeColor" :style="iconStyle" @click="handleDialogChanged(false)"/> -->
               </div>
               <div v-if="title" class="ic-dialog-main__title__block" />
 
@@ -20,10 +20,11 @@
 
               <div v-if="btns.length" class="ic-dialog-main__btns">
                 <IcBtn
-                  v-for="btn in btns"
-                  :key="btn.id"
+                  v-for="(btn, idx) in btns"
+                  :key="idx"
                   :class="[ 'ic-dialog__btn', btnGrow ? 'ic-dialog__btn--grow' : '' ]"
                   :outlined="btn.outlined"
+                  minWidth="unset"
                   @click="handleBtnClick(btn)"
                 >
                   {{ btn.text }}
@@ -41,7 +42,7 @@
             </div>
           </div>
         </transition>
-      </Portal>
+      </Teleport>
   </div>
 </template>
 
@@ -52,7 +53,7 @@ export default {
     IcBtn,
   },
   props: {
-    value: Boolean,
+    modelValue: Boolean,
     title: String,
     close: Boolean,
     large: Boolean,
@@ -129,8 +130,8 @@ export default {
     }
   },
   watch: {
-    value() {
-      this.dialog = this.value
+    modelValue() {
+      this.dialog = this.modelValue
     },
   },
   methods: {
@@ -145,15 +146,15 @@ export default {
     },
     handleDialogChanged(val) {
       this.dialog = val
-      this.$emit('input', this.dialog)
+      this.$emit('update:modelValue', this.dialog)
     },
     handleBtnClick(btn) {
-      if (!this.persistentOnBtn) this.dialog = false
+      if (!this.persistentOnBtn) this.handleDialogChanged(false)
       if (btn.action) btn.action()
     }
   },
   mounted() {
-    this.dialog = this.value
+    this.dialog = this.modelValue
   },
   updated() {
     this.$nextTick(() => {
@@ -186,6 +187,7 @@ export default {
 }
 .ic-dialog-main {
   position: relative;
+  padding: 8px;
   border-radius: 5px;
   margin-top: var(--igDialogTop);
   background: var(--bgPrimary);
@@ -237,6 +239,9 @@ export default {
     display: flex;
     width: 100%;
     justify-content: center;
+    & > :not(:last-child) {
+      margin-right: 8px;
+    }
   }
   &__btn {
     padding: 0;

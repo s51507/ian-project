@@ -1,23 +1,50 @@
 <template>
   <div :class="$style.main">
-    <IcBtn :class="$style.btn"> IcBtn </IcBtn>
-    <IcTooltip :class="$style.tooltip">
-      <IcBtn> IcTooltip </IcBtn>
-      <template #tip> Teleport to #app </template>
-    </IcTooltip>
+    <span>IcBtn + IcDialog show: {{ showDialog }}</span>
+    <IcBtn :class="$style.btn" @click="handleBtnClick"> IcBtn </IcBtn>
+
+    <span>IcTooltip</span>
+    <div :class="$style.tooltipArea">
+      <IcTooltip :class="$style.tooltip" position="top">
+        <IcBtn outlined> top </IcBtn>
+        <template #tip> Teleport to #app </template>
+      </IcTooltip>
+
+      <IcTooltip :class="$style.tooltip" position="right">
+        <IcBtn outlined> right </IcBtn>
+        <template #tip> Teleport to #app </template>
+      </IcTooltip>
+
+      <IcTooltip :class="$style.tooltip" position="bottom">
+        <IcBtn outlined> bottom </IcBtn>
+        <template #tip> Teleport to #app </template>
+      </IcTooltip>
+
+      <IcTooltip :class="$style.tooltip" position="left">
+        <IcBtn outlined> left </IcBtn>
+        <template #tip> Teleport to #app </template>
+      </IcTooltip>
+    </div>
+
+    <span>IcTabs active: {{ icTabsInfo.active }}</span>
     <IcTabs v-model="icTabsInfo.active">
       <IcTab v-for="tab in icTabsInfo.list" :key="tab" :item="tab" @click="() => handleTabClick(tab)">{{ tab }}</IcTab>
     </IcTabs>
+
+    <span>IcMenu active: {{ icMenuInfo.active }}</span>
     <IcMenu v-model="icMenuInfo.active">
       <IcMenuBtn  v-for="btn in icMenuInfo.list" :key="btn" :item="btn" @click="() => handleMenuClick(btn)">
         {{ btn }}
       </IcMenuBtn>
     </IcMenu>
+    <IcDialog v-model="showDialog" :btns="dialogBtns">
+      <template #content> content </template>
+    </IcDialog>
   </div>
 </template>
 <script>
 // 一般狀態
-import { reactive, getCurrentInstance } from 'vue'
+import { reactive, getCurrentInstance, ref } from 'vue'
 
 export default {
   props: {
@@ -28,6 +55,12 @@ export default {
     const  { proxy } = getCurrentInstance()
     // 要這樣才能拿到vue2的this
     console.log(proxy.$colors)
+
+    const showDialog = ref(false)
+    const dialogBtns = reactive([
+      { text: 'ok' },
+      { text: 'no' }
+    ])
 
     const icTabsInfo = reactive({
       active: 'ictab-1',
@@ -53,11 +86,16 @@ export default {
 
     //組中模板中需要的變數，都要通過return給暴露出去，就像當初data({return { } }) 是一樣的
     return {
+      showDialog,
+      dialogBtns,
       icTabsInfo,
       icMenuInfo
     }
   },
   methods: {
+    handleBtnClick() {
+      this.showDialog = true
+    },
     handleTabClick(target) {
       this.icTabsInfo.active = target
     },
@@ -76,8 +114,15 @@ export default {
     width: 200px;
     min-width: 200px;
   }
-  .tooltip {
-    width: 200px;
+  .tooltipArea {
+    display: flex;
+    align-items: center;
+    & > :not(:last-child) {
+      margin-right: 10px;
+    }
+    .tooltip {
+      width: 200px;
+    }
   }
   & > :not(:last-child) {
     margin-bottom: 10px;

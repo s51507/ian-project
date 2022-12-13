@@ -9,6 +9,7 @@
 export default {
   props: {
     width: [Number, String], // 寬度
+    minWidth: [Number, String], // 最小寬度
     height: [Number, String], // 高度
     color: String, // 文字顏色
     background: String, // 背景
@@ -27,6 +28,7 @@ export default {
       const { color, background } = this.genColors()
       return {
         '--ic-btn-width': this.checkNumber(this.width || '100%'),
+        '--ic-btn-min-width': this.checkNumber(this.minWidth || this.width || '100%'),
         '--ic-btn-height': this.checkNumber(this.height || 45),
         '--ic-btn-color': color,
         '--ic-btn-background': background,
@@ -69,7 +71,7 @@ export default {
   align-items: center;
   justify-content: center;
   width: var(--ic-btn-width);
-  min-width: var(--ic-btn-width);
+  min-width: var(--ic-btn-min-width);
   height: var(--ic-btn-height);
   color: var(--ic-btn-color);
   background: var(--ic-btn-background);

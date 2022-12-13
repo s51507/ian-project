@@ -3,12 +3,12 @@
     <span style="cursor: pointer" ref="target">
       <slot />
     </span>
-    <teleport to="#app">
+    <Teleport to="#app">
       <div :class="$style.tip" :style="tipStyle" ref="tip">
         {{ tip }}
         <slot name="tip" />
       </div>
-    </teleport>
+    </Teleport>
   </div>
 </template>
 
@@ -99,7 +99,7 @@ export default {
         case 'top':
           // top = 對象距離螢幕top - tip的高 - 箭頭高度 - 預留空間
           top = targetInfo.top - tipInfo.height - 5 - 5
-          calcLeft = targetInfo.left - (Math.abs(tipWidth - targetInfo.width) / 2)
+          calcLeft = targetInfo.left + (Math.abs(tipWidth - targetInfo.width) / 2)
 
           // 校正位置
           offsetX = this.calcOffsetX(calcLeft, tipInfo)
@@ -168,6 +168,7 @@ export default {
   z-index: -1;
   transition: .3s;
   opacity: 0;
+  box-shadow: 0 1px 2px 0 var(--shadow);
   &::after {
     content: " ";
     position: absolute;
