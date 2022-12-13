@@ -112,9 +112,9 @@ export default (node, _options = {}) => {
   }
 
   function setup() {
-    node.style.position = 'relative'
-    node.style.overflow = 'hidden'
-    node.classList.add('s-ripple-container')
+    // node.style.position = 'relative'
+    // node.style.overflow = 'hidden'
+    node.classList.add('ic-ripple-container')
     node.addEventListener('pointerdown', handleStart)
     node.addEventListener('pointerup', handleStop)
     node.addEventListener('pointerleave', handleStop)
@@ -126,7 +126,7 @@ export default (node, _options = {}) => {
   function destroy() {
     node.style.position = nodePosition
     node.style.overflow = nodeOverflow
-    node.classList.remove('s-ripple-container')
+    node.classList.remove('ic-ripple-container')
     node.removeEventListener('pointerdown', handleStart)
     node.removeEventListener('pointerup', handleStop)
     node.removeEventListener('pointerleave', handleStop)

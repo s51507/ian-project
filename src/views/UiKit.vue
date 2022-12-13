@@ -8,6 +8,11 @@
     <IcTabs v-model="icTabsInfo.active">
       <IcTab v-for="tab in icTabsInfo.list" :key="tab" :item="tab" @click="() => handleTabClick(tab)">{{ tab }}</IcTab>
     </IcTabs>
+    <IcMenu v-model="icMenuInfo.active">
+      <IcMenuBtn  v-for="btn in icMenuInfo.list" :key="btn" :item="btn" @click="() => handleMenuClick(btn)">
+        {{ btn }}
+      </IcMenuBtn>
+    </IcMenu>
   </div>
 </template>
 <script>
@@ -35,15 +40,30 @@ export default {
       ]
     })
 
+    const icMenuInfo = reactive({
+      active: 'icmenu-1',
+      list: [
+        'icmenu-1',
+        'icmenu-2',
+        'icmenu-3',
+        'icmenu-4',
+        'icmenu-5AAAAAAA'
+      ]
+    })
+
     //組中模板中需要的變數，都要通過return給暴露出去，就像當初data({return { } }) 是一樣的
     return {
-      icTabsInfo
+      icTabsInfo,
+      icMenuInfo
     }
   },
   methods: {
     handleTabClick(target) {
       this.icTabsInfo.active = target
-    }
+    },
+    handleMenuClick(target) {
+      this.icMenuInfo.active = target
+    },
   }
 }
 </script>

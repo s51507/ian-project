@@ -7,8 +7,7 @@
 <script>
 
 export default {
-  inheritAttrs: false,
-  inject: ['igMenuProvider'],
+  inject: ['icMenuProvider'],
   props: {
     item: [String, Number, Object],
     width: [Number, String], // 寬度
@@ -38,8 +37,8 @@ export default {
       const { color, background, borderColor } = this.genColors()
       const height = this.checkNumber(this.height || 45)
       return {
-        '--ic-menu-btn-width': this.checkNumber(this.width || this.igMenuProvider.width),
-        '--ic-menu-btn-min-width': this.checkNumber(this.minWidth || this.width || this.igMenuProvider.width),
+        '--ic-menu-btn-width': this.checkNumber(this.width || this.icMenuProvider.width),
+        '--ic-menu-btn-min-width': this.checkNumber(this.minWidth || this.width || this.icMenuProvider.width),
         '--ic-menu-btn-height': height,
         '--ic-menu-btn-color': color,
         '--ic-menu-btn-border-color': borderColor,
@@ -50,7 +49,7 @@ export default {
       }
     },
     active() {
-      return this.item === this.igMenuProvider.active
+      return this.item === this.icMenuProvider.active
     }
   },
   methods: {
@@ -79,8 +78,14 @@ export default {
     }
   },
   mounted() {
-    this.igMenuProvider.btnsMounted = true
-  }
+    this.icMenuProvider.btnsMounted = true
+  },
+  beforeUpdate() {
+    this.icMenuProvider.btnsMounted = false
+  },
+  updated() {
+    this.icMenuProvider.btnsMounted = true
+  },
 }
 </script>
 

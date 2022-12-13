@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$style.main, !isCn && $style['main-en']]">
+  <div :class="$style.main">
     <div ref="menuContainer">
       <!-- 因為btn的item格式並非一定會統一，所以用solt的方式讓外面去決定要怎麼顯示 -->
       <slot />
@@ -8,31 +8,36 @@
 </template>
 
 <script>
-import { provide } from "vue"
-const igMenuProvider = provide({
-  active: null,
-  width: null,
-  btnsMounted: false,
-})
+import { provide, reactive } from 'vue'
 
 export default {
-  provide: {
-    igMenuProvider
-  },
   props: {
-    value: [String, Number, Object],
+    modelValue: [String, Number, Object],
+  },
+  setup() {
+    const icMenuReactive = reactive({
+      active: null,
+      width: null,
+      btnsMounted: false,
+    })
+
+    provide('icMenuProvider', icMenuReactive)
+    return {
+      icMenuProvider: icMenuReactive
+    }
   },
   watch: {
-    value() {
+    modelValue() {
       this.$nextTick(() => this.findActiveNode())
     },
     btnsMounted() {
       this.calWidth()
+      this.$nextTick(() => this.findActiveNode())
     }
   },
   computed: {
     btnsMounted() {
-      return igMenuProvider.btnsMounted
+      return this.icMenuProvider.btnsMounted
     }
   },
   methods: {
@@ -46,15 +51,16 @@ export default {
       this.$refs.menuContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' })
     },
     findActiveNode() {
-      const nodes = Array.from(this.$slots.default)
-      nodes.map(node => {
-        const propsItem = node.componentOptions.propsData.item
+      const eles = Array.from(this.$refs.menuContainer.getElementsByClassName('ic-menu-btn'))
+      const nodes = Array.from(this.$slots.default()[0]?.children)
+      nodes.map((node, idx) => {
+        const propsItem = node.props.item
         const isActive = this.judgeIsActive(propsItem)
 
         if (!isActive) return
 
-        igMenuProvider.active = propsItem
-        this.scrollToCenter(node.elm)
+        this.icMenuProvider.active = propsItem
+        this.scrollToCenter(eles[idx])
       })
     },
     // 因為btn的item格式並非一定會統一，所以需要先判定格式後再處理
@@ -62,34 +68,32 @@ export default {
       switch (typeof item) {
         case 'string':
         case 'number':
-          return item === this.value
+          return item === this.modelValue
         default:
           // 單一btn的item應該不會有array的情況出現，故這邊都是當作object處理
-          if (item === this.value) return true
-          return Object.values(item).includes(this.value)
+          if (item === this.modelValue) return true
+          return Object.values(item).includes(this.modelValue)
       }
     },
     calWidth() {
       const width = Array.from(this.$slots.default, node => node.elm && node.elm.clientWidth)
       let MaxWidth = Math.max(...width)
-      if (MaxWidth < 60) MaxWidth = 60
+      if (MaxWidth < 120) MaxWidth = 120
       if (MaxWidth > 190) MaxWidth = 190
 
-      igMenuProvider.width = MaxWidth
+      this.icMenuProvider.width = MaxWidth
     }
   },
-  mounted() {
-  }
 }
 </script>
 
 <style lang="scss" module>
 .main {
-  position: fixed;
-  top: 50px;
+  // position: fixed;
+  // top: 50px;
   width: 100%;
-  z-index: 41;
-  transform: translateY(-10px);
+  // z-index: 41;
+  // transform: translateY(-10px);
   background-color: var(--bgPrimary);
   & > div {
     display: flex;
@@ -98,12 +102,6 @@ export default {
     height: 48px;
     padding: 0 7px;
     overflow: auto;
-  }
-  &-en > div > div {
-    font-size: 12px;
-    letter-spacing: 0px;
-    width: 120px;
-    margin-right: 6px;
   }
 }
 

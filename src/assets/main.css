@@ -16,6 +16,11 @@ a,
   transition: 0.4s;
 }
 
+.ic-ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
