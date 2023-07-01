@@ -109,7 +109,7 @@ export default {
 <style lang="scss" module>
 .main {
   padding: 10px;
-  background: var(--textPrimary);
+  background: var(--bgPrimary);
   .btn {
     width: 200px;
     min-width: 200px;
