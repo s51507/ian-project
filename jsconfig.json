@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6"
+    "target": "es6",
+    "composite": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "checkJs": true,
   "include": ["src/**/*.js", "src/**/*.vue"]

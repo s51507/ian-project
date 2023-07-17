@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import ColorsGenerator from '@theme/colorsGenerator'
-import themeColor from '@theme/4C9EEA.js'
+import ColorsGenerator from '@/theme/colorsGenerator'
+import themeColor from '@/theme/4C9EEA.js'
 
 import App from './App.vue'
 import router from './router'

@@ -31,14 +31,14 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@router': path.resolve(__dirname, 'src/router'),
-      '@views': path.resolve(__dirname, 'src/views'),
-      '@img': path.resolve(__dirname, `src/assets/img`),
-      '@font': path.resolve(__dirname, `src/assets/font`),
-      '@svgicons': path.resolve(__dirname, `src/assets/svgicons`),
-      '@components': path.resolve(__dirname, `src/components`),
-      '@theme': path.join(__dirname, `src/theme`)
+      // '@assets': path.resolve(__dirname, 'src/assets'),
+      // '@router': path.resolve(__dirname, 'src/router'),
+      // '@views': path.resolve(__dirname, 'src/views'),
+      // '@img': path.resolve(__dirname, `src/assets/img`),
+      // '@font': path.resolve(__dirname, `src/assets/font`),
+      // '@svgicons': path.resolve(__dirname, `src/assets/svgicons`),
+      // '@components': path.resolve(__dirname, `src/components`),
+      // '@theme': path.join(__dirname, `src/theme`)
     }
   }
 })
