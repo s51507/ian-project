@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import useGlobalStore from '@/stores/global'
 
 export default {
+  emits: ['click'],
   props: {
     width: [Number, String], // 寬度
     minWidth: [Number, String], // 最小寬度
@@ -18,6 +21,7 @@ export default {
     disabled: Boolean, // disable樣式
   },
   computed: {
+    ...mapState(useGlobalStore, ['dark']),
     parseClass() {
       return [
         'ic-btn',
@@ -25,6 +29,15 @@ export default {
       ]
     },
     parseStyle() {
+      return this.genStyle(this.dark)
+    }
+  },
+  methods: {
+    checkNumber(val) {
+      if (typeof val === 'string') return val
+      else return `${val}px`
+    },
+    genStyle() {
       const { color, background } = this.genColors()
       return {
         '--ic-btn-width': this.checkNumber(this.width || '100%'),
@@ -34,12 +47,6 @@ export default {
         '--ic-btn-background': background,
         '--ic-btn-border-radius': this.checkNumber(this.borderRadius || 5),
       }
-    }
-  },
-  methods: {
-    checkNumber(val) {
-      if (typeof val === 'string') return val
-      else return `${val}px`
     },
     genColors() {
       if (this.outlined) return this.genOutlinedColors()

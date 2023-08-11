@@ -22,6 +22,34 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
+<script>
+import { UPDATE_IS_DARK } from '@/stores/constant'
+import useGlobalStore from '@/stores/global'
+
+export default {
+  setup() {
+    const globalStore = useGlobalStore()
+    return {
+      globalStore,
+    }
+  },
+  methods: {
+    updateIsDark(bool) {
+      useGlobalStore()[UPDATE_IS_DARK](bool)
+    }
+  },
+  mounted() {
+    // init dark mode
+    const themeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+    this.updateIsDark(themeMedia.matches)
+    // 監聽瀏覽器dark mode變化
+    themeMedia.addEventListener('change', (e) => {
+      this.updateIsDark(e.matches)
+    })
+  }
+}
+</script>
+
 <style lang="scss" module>
 header {
   line-height: 1.5;

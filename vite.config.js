@@ -1,9 +1,9 @@
-import { fileURLToPath, URL } from 'url'
 import path from 'path'
+import { fileURLToPath, URL } from 'url'
 import { defineConfig, loadEnv } from 'vite'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { createHtmlPlugin } from 'vite-plugin-html'
 import rollupAlias from '@rollup/plugin-alias'
 // import requireTransform from 'vite-plugin-require-transform'
 

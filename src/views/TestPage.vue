@@ -4,12 +4,16 @@
     <div>three {{ three }}</div>
     <div>refnum {{ refnum }}</div>
     <IcBtn @click="increment">increment click me!</IcBtn>
+    <IcBtn @click="updateIsDark">updateIsDark {{ isDark }}</IcBtn>
     <div>color {{ $colors.primary }}</div>
   </div>
 </template>
 <script>
 // 一般狀態
 import { ref, reactive, computed, watchEffect, watch, getCurrentInstance } from 'vue'
+import useGlobalStore from '@/stores/global'
+import { storeToRefs } from 'pinia'
+import { UPDATE_IS_DARK } from '@/stores/constant'
 
 // 生命週期
 import {
@@ -51,7 +55,7 @@ export default {
 
     //watch裡第一個引數是監聽需要的變數，第二個是執行的回撥函式，
     watch(refnum,(a,b)=>{
-      console.log(a,b,'watch,a,b')
+      console.log(a, b, 'watch, a, b')
     })
 
     //所有的方法裡再也不需要用this了，這是很爽的
@@ -68,12 +72,25 @@ export default {
     onBeforeUnmount(() => { console.log("onBeforeUnmount") })
     onUnmounted(() => { console.log("onUnmounted") })
 
+    // store
+    const globalStore = useGlobalStore()
+    const { isDark } = storeToRefs(globalStore)
+
     //組中模板中需要的變數，都要通過return給暴露出去，就像當初data({return { } }) 是一樣的
     return {
       state,
-      increment,
       three,
-      refnum
+      refnum,
+
+      globalStore,
+      isDark,
+
+      increment,
+    }
+  },
+  methods: {
+    updateIsDark() {
+      this.globalStore[UPDATE_IS_DARK](!this.isDark)
     }
   },
   // 生命週期也可寫在外面

@@ -15,7 +15,8 @@ const app = createApp(App)
 
 window.__vue__ = app
 
-const theme = themeColor.light
+const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+const theme = isDark ? themeColor.dark : themeColor.light
 ColorsGenerator(theme)
 app.config.globalProperties.$colors = theme
 

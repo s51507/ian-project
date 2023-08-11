@@ -20,7 +20,7 @@ const colorsGenerator = theme => {
   const colorString = __genCssString(theme)
   const style = document.createElement('style')
   style.type = 'text/css'
-  style.innerHTML = `:root { ${colorString} } `
+  style.innerHTML = `:root { ${colorString} }`
 
   document.getElementsByTagName('head')[0].appendChild(style)
 }

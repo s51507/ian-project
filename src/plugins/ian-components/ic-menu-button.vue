@@ -44,7 +44,7 @@ export default {
         '--ic-menu-btn-border-color': borderColor,
         '--ic-menu-btn-background': background,
         '--ic-menu-btn-border-radius': this.checkNumber(this.borderRadius || `calc(${height} / 2)`),
-        '--ic-menu-btn-active-color': this.activeColor || this.$colors.textWhite,
+        '--ic-menu-btn-active-color': this.activeColor || this.$colors.white,
         '--ic-menu-btn-active-background': this.activeBackground || this.$colors.primary,
       }
     },
@@ -67,7 +67,7 @@ export default {
       return { color, background }
     },
     genOutlinedColors() {
-      const color = this.disabled ? this.$colors.textDisable : (this.color || this.$colors.primary)
+      const color = this.disabled ? this.$colors.textDisable : (this.color || this.$colors.textPrimary)
       const borderColor = this.disabled ? this.$colors.textDisable : (this.borderColor || this.$colors.baseBorder)
       const background = this.disabled ? this.$colors.bgPrimary : (this.background || this.$colors.bgPrimary)
       return { color, background, borderColor }
@@ -105,7 +105,7 @@ export default {
   padding: 5px;
   white-space: nowrap;
   font-size: 10px;
-  color: var(--textPrimary);
+  // color: var(--textPrimary);
   &:not(:last-child) {
     margin-right: 5px;
   }

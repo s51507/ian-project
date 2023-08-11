@@ -127,7 +127,7 @@ export default {
     // primaryHover: '',
     // primaryActive: '',
 
-    white: '#1E1F24',
+    white: '#FFFFFF',
     gray: '#F2F2F2',
     grayLighter: '#26292E',
 
