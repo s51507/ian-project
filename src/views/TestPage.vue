@@ -11,8 +11,8 @@
 <script>
 // 一般狀態
 import { ref, reactive, computed, watchEffect, watch, getCurrentInstance } from 'vue'
-import useGlobalStore from '@/stores/global'
 import { storeToRefs } from 'pinia'
+import useGlobalStore from '@/stores/global'
 import { UPDATE_IS_DARK } from '@/stores/constant'
 
 // 生命週期

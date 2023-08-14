@@ -1,7 +1,10 @@
 <template>
   <div :class="$style.main">
+    <span>IcBtn + update theme isDark: {{ isDark }}</span>
+    <IcBtn :class="$style.btn" @click="handleThemeBtnClick"> IcBtn + update theme </IcBtn>
+
     <span>IcBtn + IcDialog show: {{ showDialog }}</span>
-    <IcBtn :class="$style.btn" @click="handleBtnClick"> IcBtn </IcBtn>
+    <IcBtn :class="$style.btn" @click="handleShowDialogBtnClick"> IcBtn </IcBtn>
 
     <span>IcTooltip</span>
     <div :class="$style.tooltipArea">
@@ -45,6 +48,9 @@
 <script>
 // 一般狀態
 import { reactive, getCurrentInstance, ref } from 'vue'
+import { UPDATE_IS_DARK } from '@/stores/constant'
+import { storeToRefs } from 'pinia'
+import useGlobalStore from '@/stores/global'
 
 export default {
   props: {
@@ -55,6 +61,9 @@ export default {
     const  { proxy } = getCurrentInstance()
     // 要這樣才能拿到vue2的this
     console.log(proxy.$colors)
+
+    const globalStore = useGlobalStore()
+    const { isDark } = storeToRefs(globalStore)
 
     const showDialog = ref(false)
     const dialogBtns = reactive([
@@ -86,6 +95,8 @@ export default {
 
     //組中模板中需要的變數，都要通過return給暴露出去，就像當初data({return { } }) 是一樣的
     return {
+      globalStore,
+      isDark,
       showDialog,
       dialogBtns,
       icTabsInfo,
@@ -93,7 +104,10 @@ export default {
     }
   },
   methods: {
-    handleBtnClick() {
+    handleThemeBtnClick() {
+      this.globalStore[UPDATE_IS_DARK](!this.isDark)
+    },
+    handleShowDialogBtnClick() {
       this.showDialog = true
     },
     handleTabClick(target) {
