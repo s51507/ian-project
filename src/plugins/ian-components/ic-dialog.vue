@@ -111,7 +111,7 @@ export default {
       return {
         ...(this.large && { fontSize: '150%' }),
         ...(this.titleColor && { color: this.titleColor }),
-        background: this.$colors.primary,
+        background: 'var(--primary)',
       }
     },
     iconStyle() {

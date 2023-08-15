@@ -44,8 +44,8 @@ export default {
         '--ic-menu-btn-border-color': borderColor,
         '--ic-menu-btn-background': background,
         '--ic-menu-btn-border-radius': this.checkNumber(this.borderRadius || `calc(${height} / 2)`),
-        '--ic-menu-btn-active-color': this.activeColor || this.$colors.white,
-        '--ic-menu-btn-active-background': this.activeBackground || this.$colors.primary,
+        '--ic-menu-btn-active-color': this.activeColor || 'var(--white)',
+        '--ic-menu-btn-active-background': this.activeBackground || 'var(--primary)',
       }
     },
     active() {
@@ -62,14 +62,14 @@ export default {
       return this.genDefaultColors()
     },
     genDefaultColors() {
-      const color = this.disabled ? this.$colors.textWhite : (this.color || this.$colors.textWhite)
-      const background = this.disabled ? this.$colors.textDisable : (this.background || this.$colors.primary)
+      const color = this.disabled ? 'var(--textWhite)' : (this.color || 'var(--textWhite)')
+      const background = this.disabled ? 'var(--textDisable)' : (this.background || 'var(--primary)')
       return { color, background }
     },
     genOutlinedColors() {
-      const color = this.disabled ? this.$colors.textDisable : (this.color || this.$colors.textPrimary)
-      const borderColor = this.disabled ? this.$colors.textDisable : (this.borderColor || this.$colors.baseBorder)
-      const background = this.disabled ? this.$colors.bgPrimary : (this.background || this.$colors.bgPrimary)
+      const color = this.disabled ? 'var(--textDisable)' : (this.color || 'var(--textPrimary)')
+      const borderColor = this.disabled ? 'var(--textDisable)' : (this.borderColor || 'var(--baseBorder)')
+      const background = this.disabled ? 'var(--bgPrimary)' : (this.background || 'var(--bgPrimary)')
       return { color, background, borderColor }
     },
     handleBtnClick() {

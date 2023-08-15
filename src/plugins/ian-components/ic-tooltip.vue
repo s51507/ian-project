@@ -79,7 +79,7 @@ export default {
           top = targetInfo.top - (Math.abs(tipInfo.height - targetInfo.height) / 2)
           // top = 對象距離螢幕right - tip的寬 - 箭頭寬度 - 預留空間 - margin-left
           left = targetInfo.left - tipWidth - 5 - 5 - 10
-          arrow.color = `transparent transparent transparent ${this.$colors.primary}`
+          arrow.color = 'transparent transparent transparent var(--primary)'
           arrow.bottom = 'calc(50% - 5px)'
           arrow.left = 'calc(100% + 5px)'
           margin = '0 0 0 10px'
@@ -90,7 +90,7 @@ export default {
           top = targetInfo.top - (Math.abs(tipInfo.height - targetInfo.height) / 2)
           // top = 對象距離螢幕right + 箭頭寬度 + 預留空間
           left = targetInfo.right + 5 + 5
-          arrow.color = `transparent ${this.$colors.primary} transparent transparent`
+          arrow.color = 'transparent var(--primary) transparent transparent'
           arrow.bottom = 'calc(50% - 5px)'
           arrow.left = '-5px'
           margin = '0 10px 0 0'
@@ -104,7 +104,7 @@ export default {
           // 校正位置
           offsetX = this.calcOffsetX(calcLeft, tipInfo)
           left = calcLeft - offsetX
-          arrow.color = `${this.$colors.primary} transparent transparent transparent`
+          arrow.color = 'var(--primary) transparent transparent transparent'
           arrow.bottom = '-10px'
           arrow.left = 'calc(50% + var(--tipOffsetX))'
 
@@ -118,7 +118,7 @@ export default {
           // 校正位置
           offsetX = this.calcOffsetX(calcLeft, tipInfo)
           left = calcLeft - offsetX
-          arrow.color = `transparent transparent ${this.$colors.primary} transparent`
+          arrow.color = 'transparent transparent var(--primary) transparent'
           arrow.bottom = '100%'
           arrow.left = 'calc(50% + var(--tipOffsetX))'
 

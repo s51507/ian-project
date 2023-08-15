@@ -129,7 +129,7 @@ export default {
     fontStyle() {
       const obj = {}
       if (this.fontColor) obj.color = this.fontColor
-      else obj.color = this.$colors.lightText
+      else obj.color = 'var(--lightText)'
       obj.fontSize = this.fontSize
       return obj
     },
@@ -166,7 +166,7 @@ export default {
       obj.borderRadius = this.radius
       obj.marginLeft = this.buttonMargin
       obj.marginRight = this.buttonMargin
-      obj.backgroundColor = (this.active === button.value) ? '' : this.$colors.bgSecondary
+      obj.backgroundColor = (this.active === button.value) ? '' : 'var(--bgSecondary)'
 
       if (this.borderStyle) obj.border = this.borderStyle
       if (this.border) {
@@ -175,7 +175,7 @@ export default {
           obj.backgroundColor = this.borderBackground
         } else {
           obj.border = `1px solid ${this.fontColor}`
-          obj.backgroundColor = this.$colors.bgPrimary
+          obj.backgroundColor = 'var(--bgPrimary)'
         }
       }
       if (!button.value) {

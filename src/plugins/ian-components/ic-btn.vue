@@ -29,15 +29,6 @@ export default {
       ]
     },
     parseStyle() {
-      return this.genStyle(this.dark)
-    }
-  },
-  methods: {
-    checkNumber(val) {
-      if (typeof val === 'string') return val
-      else return `${val}px`
-    },
-    genStyle() {
       const { color, background } = this.genColors()
       return {
         '--ic-btn-width': this.checkNumber(this.width || '100%'),
@@ -47,19 +38,25 @@ export default {
         '--ic-btn-background': background,
         '--ic-btn-border-radius': this.checkNumber(this.borderRadius || 5),
       }
+    }
+  },
+  methods: {
+    checkNumber(val) {
+      if (typeof val === 'string') return val
+      else return `${val}px`
     },
     genColors() {
       if (this.outlined) return this.genOutlinedColors()
       return this.genDefaultColors()
     },
     genDefaultColors() {
-      const color = this.disabled ? this.$colors.textWhite : (this.color || this.$colors.textWhite)
-      const background = this.disabled ? this.$colors.textDisable : (this.background || this.$colors.primary)
+      const color = this.disabled ? 'var(--textWhite)' : (this.color || 'var(--textWhite)')
+      const background = this.disabled ? 'var(--textDisable)' : (this.background || 'var(--primary)')
       return { color, background }
     },
     genOutlinedColors() {
-      const color = this.disabled ? this.$colors.textDisable : (this.color || this.$colors.primary)
-      const background = this.disabled ? this.$colors.bgPrimary : (this.background || this.$colors.bgPrimary)
+      const color = this.disabled ? 'var(--textDisable)' : (this.color || 'var(--primary)')
+      const background = this.disabled ? 'var(--bgPrimary)' : (this.background || 'var(--bgPrimary)')
       return { color, background }
     },
     handleBtnClick() {

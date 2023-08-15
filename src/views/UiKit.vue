@@ -8,25 +8,12 @@
 
     <span>IcTooltip</span>
     <div :class="$style.tooltipArea">
-      <IcTooltip :class="$style.tooltip" position="top">
-        <IcBtn outlined> top </IcBtn>
-        <template #tip> Teleport to #app </template>
-      </IcTooltip>
-
-      <IcTooltip :class="$style.tooltip" position="right">
-        <IcBtn outlined> right </IcBtn>
-        <template #tip> Teleport to #app </template>
-      </IcTooltip>
-
-      <IcTooltip :class="$style.tooltip" position="bottom">
-        <IcBtn outlined> bottom </IcBtn>
-        <template #tip> Teleport to #app </template>
-      </IcTooltip>
-
-      <IcTooltip :class="$style.tooltip" position="left">
-        <IcBtn outlined> left </IcBtn>
-        <template #tip> Teleport to #app </template>
-      </IcTooltip>
+      <template v-for="item in icToolTipList" :key="item.position">
+        <IcTooltip :class="$style.tooltip" :position="item.position">
+          <IcBtn outlined> {{ item.text }} </IcBtn>
+          <template #tip> Teleport to #app </template>
+        </IcTooltip>
+      </template>
     </div>
 
     <span>IcTabs active: {{ icTabsInfo.active }}</span>
@@ -71,6 +58,13 @@ export default {
       { text: 'no' }
     ])
 
+    const icToolTipList = [
+      { position: 'top', text: 'top' },
+      { position: 'right', text: 'right' },
+      { position: 'bottom', text: 'bottom' },
+      { position: 'left', text: 'left' },
+    ]
+
     const icTabsInfo = reactive({
       active: 'ictab-1',
       list: [
@@ -97,6 +91,7 @@ export default {
     return {
       globalStore,
       isDark,
+      icToolTipList,
       showDialog,
       dialogBtns,
       icTabsInfo,

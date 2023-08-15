@@ -1,8 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header>
     <img alt="Vue logo" :class="$style.logo" src="@/assets/logo.svg" width="125" height="125" />
@@ -23,10 +18,17 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <script>
+import { RouterLink, RouterView } from 'vue-router'
 import { UPDATE_IS_DARK } from '@/stores/constant'
 import useGlobalStore from '@/stores/global'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
+  cpmponents: {
+    RouterLink,
+    RouterView,
+    HelloWorld,
+  },
   setup() {
     const globalStore = useGlobalStore()
     return {
