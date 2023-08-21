@@ -72,7 +72,12 @@ export default {
       let calcLeft = 0
       let margin = ''
       const arrow = { color: '', bottom: '', left: '' }
-      // TODO - 目前只有先做bottom
+
+      // 規避eslint警告，switch case內不能宣告變數
+      let arrowLeft
+      let targetRight
+      let offsetArrowLeft
+
       switch (this.position) {
         case 'left':
           // top = 對象距離螢幕top - ((tip的高 - 對象的高) / 2)
@@ -81,7 +86,7 @@ export default {
           left = targetInfo.left - tipWidth - 5 - 5 - 10
           arrow.color = 'transparent transparent transparent var(--primary)'
           arrow.bottom = 'calc(50% - 5px)'
-          arrow.left = 'calc(100% + 5px)'
+          arrow.left = 'calc(100% + 4px)'
           margin = '0 0 0 10px'
 
           return { top, left, offsetX, offsetY, arrow, margin }
@@ -92,7 +97,7 @@ export default {
           left = targetInfo.right + 5 + 5
           arrow.color = 'transparent var(--primary) transparent transparent'
           arrow.bottom = 'calc(50% - 5px)'
-          arrow.left = '-5px'
+          arrow.left = '-4px'
           margin = '0 10px 0 0'
 
           return { top, left, offsetX, offsetY, arrow, margin }
@@ -103,10 +108,19 @@ export default {
 
           // 校正位置
           offsetX = this.calcOffsetX(calcLeft, tipInfo)
-          left = calcLeft - offsetX
+          // 確保tip不會超出目標外面
+          left = (calcLeft - offsetX) > targetInfo.right ? (targetInfo.right - 5) : (calcLeft - offsetX)
+
+          // 箭頭位置
+          arrowLeft = (tipWidth / 2) + offsetX
+          // 箭頭最右方 = target右方扣掉圓角距離
+          targetRight = targetInfo.right - 5
+          // 箭頭位置不可超出target右方
+          offsetArrowLeft = (arrowLeft + tipInfo.left) >= targetRight ? (targetRight - tipInfo.left) : arrowLeft
+
           arrow.color = 'var(--primary) transparent transparent transparent'
-          arrow.bottom = '-10px'
-          arrow.left = 'calc(50% + var(--tipOffsetX))'
+          arrow.bottom = '-9px'
+          arrow.left = `${offsetArrowLeft}px`
 
           return { top, left, offsetX, offsetY, arrow }
         case 'bottom':
@@ -117,10 +131,19 @@ export default {
 
           // 校正位置
           offsetX = this.calcOffsetX(calcLeft, tipInfo)
-          left = calcLeft - offsetX
+          // 確保tip不會超出目標外面
+          left = (calcLeft - offsetX) > targetInfo.right ? (targetInfo.right - 5) : (calcLeft - offsetX)
+
+          // 箭頭位置
+          arrowLeft = (tipWidth / 2) + offsetX
+          // 箭頭最右方 = target右方扣掉圓角距離
+          targetRight = targetInfo.right - 5
+          // 箭頭位置不可超出target右方
+          offsetArrowLeft = (arrowLeft + tipInfo.left) >= targetRight ? (targetRight - tipInfo.left) : arrowLeft
+
           arrow.color = 'transparent transparent var(--primary) transparent'
-          arrow.bottom = '100%'
-          arrow.left = 'calc(50% + var(--tipOffsetX))'
+          arrow.bottom = 'calc(100% - 1px)'
+          arrow.left = `${offsetArrowLeft}px`
 
           return { top, left, offsetX, offsetY, arrow }
       }
