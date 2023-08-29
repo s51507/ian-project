@@ -10,6 +10,7 @@
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/uikit">UiKit</RouterLink>
         <RouterLink to="/test">Test</RouterLink>
+        <RouterLink to="/nothing">Nothing</RouterLink>
       </nav>
     </div>
   </header>

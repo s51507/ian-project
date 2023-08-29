@@ -7,6 +7,7 @@ import IcMenuBtn from './ic-menu-button.vue'
 import IcDialog from './ic-dialog.vue'
 import IcInputNumPassword from './ic-input-num-password.vue'
 import IcTooltip from './ic-tooltip.vue'
+import IcScrollHorizontal from './ic-scroll-horizontal.vue'
 
 export default {
   IcBtn,
@@ -18,4 +19,5 @@ export default {
   IcTooltip,
   IcDialog,
   IcInputNumPassword,
+  IcScrollHorizontal,
 }

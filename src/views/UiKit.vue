@@ -27,6 +27,23 @@
         {{ btn }}
       </IcMenuBtn>
     </IcMenu>
+
+    <span>IcScrollHorizontal</span>
+    <IcScrollHorizontal>
+      <div :class="[$style.box, $style.green]" />
+      <div :class="[$style.box, $style.blue]" />
+      <div :class="[$style.box, $style.red]" />
+      <div :class="[$style.box, $style.yellow]" />
+      <div :class="[$style.box, $style.green]" />
+      <div :class="[$style.box, $style.blue]" />
+      <div :class="[$style.box, $style.red]" />
+      <div :class="[$style.box, $style.yellow]" />
+      <div :class="[$style.box, $style.green]" />
+      <div :class="[$style.box, $style.blue]" />
+      <div :class="[$style.box, $style.red]" />
+      <div :class="[$style.box, $style.yellow]" />
+    </IcScrollHorizontal>
+
     <IcDialog v-model="showDialog" :btns="dialogBtns">
       <template #content> content </template>
     </IcDialog>
@@ -136,6 +153,23 @@ export default {
   }
   & > :not(:last-child) {
     margin-bottom: 10px;
+  }
+
+  .box {
+    width: 300px;
+    height: 1000px;
+    &.green {
+      background-color: green;
+    }
+    &.blue {
+      background-color: navy;
+    }
+    &.red {
+      background-color: red;
+    }
+    &.yellow {
+      background-color: darkgoldenrod;
+    }
   }
 }
 </style>
