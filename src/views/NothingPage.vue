@@ -1,27 +1,440 @@
 <template>
   <div :class="$style.main">
     <IcScrollHorizontal>
-      <div :class="[$style.box, $style.green]" />
-      <div :class="[$style.box, $style.blue]" />
-      <div :class="[$style.box, $style.red]" />
-      <div :class="[$style.box, $style.yellow]" />
-      <div :class="[$style.box, $style.green]" />
-      <div :class="[$style.box, $style.blue]" />
-      <div :class="[$style.box, $style.red]" />
-      <div :class="[$style.box, $style.yellow]" />
-      <div :class="[$style.box, $style.green]" />
-      <div :class="[$style.box, $style.blue]" />
-      <div :class="[$style.box, $style.red]" />
-      <div :class="[$style.box, $style.yellow]" />
+      <IcTimeline :originData="fakeData" />
     </IcScrollHorizontal>
   </div>
 </template>
 <script>
-// import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 
 export default {
   setup() {
+    const fakeData = reactive({
+      2000: {
+        8: {
+          7: {
+            title: 'Title 2000/8/7',
+            content: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+          },
+          8: {
+            title: 'Title 2000/8/8',
+            content: 'content',
+          },
+          9: {
+            title: 'Title 2000/8/9',
+            content: 'content',
+          },
+          10: {
+            title: 'Title 2000/8/10',
+            content: 'content',
+          },
+          11: {
+            title: 'Title 2000/8/11',
+            content: 'content',
+            memorialDay: true
+          },
+          12: {
+            title: 'Title 2000/8/12',
+            content: 'content',
+          },
+          13: {
+            title: 'Title 2000/8/13',
+            content: 'content',
+          },
+          14: {
+            title: 'Title 2000/8/14',
+            content: 'content',
+          },
+          15: {
+            title: 'Title 2000/8/15',
+            content: 'content',
+          },
+          16: {
+            title: 'Title 2000/8/16',
+            content: 'content',
+          },
+          17: {
+            title: 'Title 2000/8/17',
+            content: 'content',
+          },
+          18: {
+            title: 'Title 2000/8/18',
+            content: 'content',
+          },
+          30: {
+            title: 'Title 2000/8/30',
+            content: 'content',
+            memorialDay: true
+          }
+        },
+        11: {
+          28: {
+            title: 'Title 2000/11/28',
+            content: 'content',
+          },
+          30: {
+            title: 'Title 2000/11/30',
+            content: 'content',
+          }
+        }
+      },
+      2001: {
+        2: {
+          1: {
+            title: 'Title 2001/02/01',
+            content: 'content',
+          },
+          3: {
+            title: 'Title 2001/02/03',
+            content: 'content',
+          }
+        }
+      }
+    })
+    const secretData = reactive({
+      2023: {
+        5: {
+          20: {
+            title: '故事的起點',
+            content: '02:12告白\n02:15接受',
+            memorialDay: true
+          },
+          23: {
+            title: '各種第一次(*´艸`*)',
+            content: '第一次去她家\n第一次抱抱\n第一次牽手',
+          },
+          26: {
+            title: '第一次約會(◍•ᴗ•◍)❤',
+            content: '第一次約會\nㄘ墨賞',
+          },
+          28: {
+            title: '害羞(〃∀〃)',
+            content: '第一次親吻\n第一次舌吻\n帶套初體驗但我軟了(,,Ծ 3 Ծ,,)',
+          },
+          30: {
+            title: '還是很害羞(〃∀〃)',
+            content: `被口到_了 阿斯( ～'ω')～`,
+            memorialDay: true
+          },
+        },
+        6: {
+          7: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ八方雲集 (板橋三民二店)'
+          },
+          9: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ夏慕尼新香榭鐵板燒 台北忠孝東店，好ㄘ'
+          },
+          11: {
+            title: '依然是很害羞(〃∀〃)',
+            content: '無套進去，有進去兩次但一直滑出來',
+          },
+          16: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ戰國拉麵，好ㄘ'
+          },
+          18: {
+            title: '羞羞(〃∀〃)',
+            content: '無套進不去，用手讓他高潮',
+          },
+          20: {
+            title: '一個月囉✧◝(⁰▿⁰)◜✧',
+            content: '一個月紀念\n語芟送了手作卡片還買了抹茶蛋糕\n雖然她很在意原本點綴的藍莓變芒果，但還是很好ㄘ',
+            memorialDay: true
+          },
+          22: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ八方雲集 (板橋三民二店)'
+          },
+          24: {
+            title: '羞羞(〃∀〃)',
+            content: '無套進去讓她高潮兩次(●｀ 艸 ´)',
+          },
+          27: {
+            title: '第一次逛街(灬ºωº灬)',
+            content: '第一次出門逛街\n買airpods 2送她提前的生日禮物\n當晚吃鰻將劍持屋Unashow，好ㄘ',
+          },
+          29: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ福勝亭 新埔店，好ㄘ'
+          },
+        },
+        7: {
+          7: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘYummy brunch 雅米中山店，好ㄘ'
+          },
+          9: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ一生懸麵 Issyokemen，好ㄘ'
+          },
+          14: {
+            title: '日常(w´ω｀w)',
+            content: '她戴眼鏡到公司，好看'
+          },
+          20: {
+            title: '兩個月囉✧◝(⁰▿⁰)◜✧',
+            content: '滿兩個月囉',
+            memorialDay: true
+          },
+          22: {
+            title: '語芟料理(´,,•ω•,,)♡',
+            content: '第一次吃到語芟煮的麵ε٩(๑> ₃ <)۶з，好ㄘ'
+          },
+          28: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ福勝亭 新埔店，好ㄘ'
+          },
+          30: {
+            title: '語芟生日✧◝(⁰▿⁰)◜✧',
+            content: '去了新莊美麗新宏匯皇家影城看芭比\n回程買了檸檬千層蛋糕\n許願說了希望我能一直愛她、賺大錢\n還知道了她有偷偷寫一本關於我的筆記\n所以票根讓她貼上去了',
+            memorialDay: true
+          },
+          31: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘYAYOI彌生軒 板橋車站店，好ㄘ'
+          }
+        },
+        8: {
+          9: {
+            title: '羞羞(〃∀〃)',
+            content: '第一次帶套內射\n發現可能對乳膠過敏',
+          },
+          13: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ旬彩 神樂家 (台北) 忠孝店，好ㄘ'
+          },
+          14: {
+            title: '語芟去日本',
+            content: '8/14-8/19語芟去日本\n見不到面｡ﾟヽ(ﾟ´Д｀)ﾉﾟ｡',
+          },
+          19: {
+            itle: '接機(´,,•ω•,,)♡',
+            content: '第一次幫她接機',
+          },
+          20: {
+            title: '三個月囉✧◝(⁰▿⁰)◜✧',
+            content: '三個月吃初魚，line有相簿',
+            memorialDay: true
+          },
+          22: {
+            title: '七夕',
+            content: '結果忘了巧克力害她生氣...',
+          },
+          23: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '氣消了\n還一起吃春水堂\n她還說了高潮最多六次極限(〃∀〃)',
+          },
+          27: {
+            title: '陪她買皮夾',
+            content: '一起去台北京站買她的agnesb錢包\n原本想買給她但她說太貴\n最後幫她出一半\n晚餐吃糀日和 Kouji Cafe 京站店\n還約好了跨年一起看紅白',
+          },
+          28: {
+            title: '雷速報到',
+            content: '同公司囉～\n中午吃了公司樓下的春水堂\n好ㄘ但上菜有點慢',
+          },
+        },
+        9: {
+          6: {
+            title: '羞羞(〃∀〃)',
+            content: '第二次戴套內射\n換了002之後就不會過敏了',
+          },
+          10: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '栄次郎個人燒肉—板橋文化店',
+          },
+          20: {
+            title: '四個月囉✧◝(⁰▿⁰)◜✧',
+            content: '寫了一張小卡片給她\n吃了必勝客99元個人夏威夷披薩一人一份\n她還算我_了之後抖了18下(*´艸`*)',
+            memorialDay: true
+          },
+          25: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '唐點小聚美麗華店，好ㄘ',
+          },
+          28: {
+            title: '開刀｡ﾟヽ(ﾟ´Д｀)ﾉﾟ｡',
+            content: '9/28-10/4語芟鼻中隔彎曲開刀\n見不到面｡ﾟヽ(ﾟ´Д｀)ﾉﾟ｡',
+          },
+        },
+        10: {
+          7: {
+            title: '看電影(´,,•ω•,,)♡',
+            content: '去看了蒼鷺與少年\n看完之後到無印良品\n她挑了一件藍色外套給我\n晚餐吃了旬野漁平日式料理，好ㄘ'
+          },
+          13: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ納達吉印度料理（但隔天她說過敏腫成豬頭）\nㄘ完後走路散步到藍線搭到新埔\n途中遇到一隻貓\n但完全不理她直接轉頭走掉，笑死XD'
+          },
+          15: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ伍冠鍋貼牛肉麵（三民店），牛肉麵很Q彈好ㄘ\nㄘ完去家樂福買星期六要去烤肉的濕紙巾，逛了很多還買了延長線\n回家幫她裝NS發現機上盒不是網路hub，XD\n還收到了手機殼，開心～'
+          },
+          19: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ朱記餡餅粥店 大直美麗華店，好ㄘ'
+          },
+          20: {
+            title: '五個月囉✧◝(⁰▿⁰)◜✧',
+            content: '午餐ㄘスシロー壽司郎 台北內湖美麗華店，好ㄘ\n午休時間寫了小卡片，下午2點多拿給她',
+            memorialDay: true
+          },
+          21: {
+            title: '第一次帶她和朋友玩',
+            content: '早上7點到她家接她\n然後一起去文山農場跟小妹群烤肉解謎\n閃瞎眾人嘻嘻'
+          },
+          27: {
+            title: 'ㄘ公司團建(っ˘ڡ˘ς)',
+            content: '第一次穿靴子，很好看>///////<\n公司團建漢來海港餐廳 敦化店'
+          },
+          29: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '在她家玩馬力歐派對\n我選耀西，她選羅潔塔\n開始沒多久她被黛西公主搞，就開始罵他婊子ＸＤＤＤＤ\n最後我贏了嘻嘻\n晚餐ㄘ牛肉麵'
+          },
+          30: {
+            title: '摸魚 |･ω･｀)',
+            content: '下午偷溜出去約會散步嘻嘻'
+          },
+        },
+        11: {
+          5: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '到他家玩馬力歐派對\n全部隨機前她就說除了凱瑟琳以外都好\n結果我拿到壞力歐，她拿到凱瑟琳ＸＤＤＤＤ\n最後她贏了～'
+          },
+          9: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: ' 一起到遠東SOGO 台北忠孝館去看明天要送給她朋友的結婚禮盒\n先到了THE BODY SHOP 美體小舖 台北SOGO忠孝店\n雖然她說自己都洗這家的，但送禮好像不夠好\n後來到SABON 台北遠東SOGO忠孝\n看到聖誕節限定的禮盒，就決定要買了\n結果被店員推銷多買一罐身體磨砂膏ＸＤ'
+          },
+          12: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '今天到環球購物中心 新北中和約會～\n先到大戶屋中和環球店吃飯之後，再去無印良品 環球門市買我的襯衫\n然後去UNIQLO Global Mall新北中和店買她的衣服\n後來到了TOY WORLD 中和環球店抽瑪利歐一番賞\n她原本想抽毛巾，結果抽到盤塑膠盤子，因為太塑膠了隨意超氣XD\n然後看到旁邊有迪士尼轉蛋，她說不要高飛，結果真的轉到高飛笑死XD\n然後再轉一次是唐老鴨，結果發現還滿精緻的給過～'
+          },
+          18: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '原本打算去板橋大遠百逛街之後到新北耶誕城\n後來因為玩太晚了XD，就出門吃個飯\n剛開始打算吃灃 精緻鍋物，但沒位子\n後來找了賀本屋日式食堂也因為要等15分鐘，而且她說看廚房感覺不OK，所以就算惹\n最後到了一直想吃但都沒進去的Pocket Pasta口袋義大利麵，結果這家意外的好吃，大推！\n吃完之後看還有時間，就回她家玩馬力歐派對XD\n這次我隨機到耀西，她隨機到森喜剛，電腦選超強結果小遊戲都贏不了，之後都不選最強了ㄇㄉ'
+          },
+          20: {
+            title: '半年紀念 ✧◝(⁰▿⁰)◜✧',
+            content: '早上在忠孝復興她就拿了卡片跟禮物給我，說要讓我猜猜看是啥，提示是天空藍藍的\n我以為是飛機或日本的東西，結果是peko！\n裡面有自製peko卡片、合照卡片還有兔田跟不二家聯名的牛奶糖\n然後我也把準備的卡片跟耳環交給她～\n下班後去吃初魚鐵板燒大直店，結果她一直刪照片讓我有點不開心\n她一直說我不能對她生氣，到後面就想說算了，反正偷偷拍就好？\n嘻嘻',
+            memorialDay: true
+          },
+          22: {
+            title: '修耳環',
+            content: '他說耳環彎針腳的時候弄掉了\n下班去他家用結果另一邊也被我弄掉ＸＤ\n先帶回家黏好再給她～'
+          },
+          24: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '他說忘記帶圍巾會冷，還只穿一件白襯衫加外套(很透！)，就跟他中午吃完飯到美麗華看有沒有圍巾\n結果經過global mall看到本田翼穿的毛衣，就勸敗他買買買！\n後來試穿就去買完直接穿回去了嘻嘻\n回去前還看到我的大衣好像很好看，之後再來買'
+          },
+          25: {
+            title: 'Nigel婚禮',
+            content: '中午參加Nigel婚禮\n前一天還特地去染頭髮\n還第一次穿高跟鞋！\n午宴後直接回他家～',
+          },
+          26: {
+            title: '耳環黏好了！',
+            content: '耳環黏好了，明天帶去給他～',
+          },
+          27: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '中午ㄘ壽司郎(Deri也一起)\n吃完之後到global mall瞄了一下我的外套後就回公司了\n回公司後叫她到樓梯間，把耳環給她～',
+          },
+          29: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘUZNA OMOM 杏桃鬆餅屋 (SOGO復興店)，好ㄘ！\n結果晚上睡前聊天的時候傳了一個ig影片給她，讓她誤會以為我是跟她說要的太多了\n結果就一直生氣惹...',
+          },
+          30: {
+            title: '和好(╥﹏╥)',
+            content: '一直到中午買午餐到時候跟她到樓梯間聊聊\n到後面我哭了，我自己也嚇到...\n然後就和好了',
+          }
+        },
+        12: {
+          4: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '中午吃壽司郎～\n吃完一起去global mall買我的大衣\n然後她買了白色帽Ｔ送我～',
+          },
+          6: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '中午ㄘ春水堂 大直店，好ㄘ',
+          },
+          8: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '中午ㄘ雄爺食堂，好ㄘ',
+          },
+          17: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '先到板橋車站想ㄘ繼光香香雞，但一堆人排隊\n後來想說看看有啥好ㄘ的，結果都還好，就到板橋大遠百約會\n吉卜力商店人超多！\n晚餐ㄘ拉麵山頭火 大遠百板橋店，好ㄘ！\nㄘ完在裡面逛\n到了vacanza accessory 假期飾品-板橋大遠百專櫃，她看到一個尾戒很喜歡，猶豫了一下還是買了XD\n走回家的時候走了一下耶誕城的光廊～',
+          },
+          19: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '中午ㄘ丸亀製麵 美麗華大直店 烏龍麵餐廳，她說炸花枝好ㄘ～\nㄘ完之後她說想找有線耳機，就晃了一下到無印良品\n結果逛完後沒找到，她說想睡覺就回公司了XD',
+          },
+          20: {
+            title: '七個月囉✧◝(⁰▿⁰)◜✧',
+            content: '找了一張愛麗絲的聖誕卡片送她\n結果她忘了今天是20日，還加班到20:20XD\n路上她怕我餓先叫了外送，真貼心><\n到家後送她卡片～',
+            memorialDay: true
+          },
+          21: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '中午等她吃飯等了一陣子\n她忙完之後出來，想說鬧她一下，就說了等很久肚子好餓之類的\n她就帶我去吃春水堂\n晚上又提到這件事她說很生氣，還氣到氣喘...，不可以說等很久\n後來說清楚這是開玩笑想鬧她而已就好了',
+          },
+          22: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '早上太冷她就請假，晚上團建再過來吃Friday\n過來的時候她請我幫她買護唇膏，加了一下班之後到公司附近的康是美發現沒專科的\n看了一下時間想說應該來得及，就跑去大直屈臣氏\n結果出捷運沒多久她就說到松機了，只好馬上回去QQ\n後來護唇膏也沒買到讓她生氣了...\n後來也有說清楚我不是不買而是想買專科給她用，她也理解和好了\n團建吃完後還到了美麗華聖誕樹拍照～',
+          },
+          24: {
+            title: '平安夜ε٩(๑> ₃ <)۶з',
+            content: '出門後先去買護唇膏\n到她家後把護唇膏、聖誕禮物（cona\'s跳跳糖松露巧克力、耳環）、老爸買的髮圈送她\n還幫她換了廚房淨水器\n晚餐在她家叫了肯德基，然後就一起散步到新埔等車～',
+          },
+          25: {
+            title: '聖誕節(´,,•ω•,,)♡',
+            content: '晚餐ㄘ立馬吃一鍋。有機水產火鍋專賣 E.Ma Hot Pot 仁愛店，好ㄘ\n回家的時候到了新埔那邊的公園晃了一下～',
+            memorialDay: true
+          },
+          27: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚餐ㄘ壽司郎，ㄘ完幫我媽買資生堂眼霜跟化妝水～',
+          },
+          29: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '因為她的那個來痛得要死，所以昨晚沒吃晚餐就睡了\n半夜爬起來泡了玉米濃湯，早上起床還是很暈，結果就倒下去撞到沙發扶手，腫一大包，好險沒怎樣\n晚上外帶八方回家ㄘ，ㄘ完之後看YT\n後來親到一半他說受不了要脫我褲子XDDDD\n接著就在客廳繞著沙發鬼抓人，繞了好久她還是抓不到我笑死\n後面她就很喘，我笑到肚子超痛XDDDDD\n晚上睡覺通電話聊了一段時間之後她說睏睏，然後就說晚安睡覺了\n過一段時間之後她又打來說剛剛睡著，啊不就說晚安要睡覺了嗎XDDDDD',
+          },
+          31: {
+            title: '跨年囉✧◝(⁰▿⁰)◜✧',
+            content: '晚上七點多出發去她家看日本紅白跨年！\n還買了鹹酥雞一起ㄘ！\n然後就在她家跨年過夜～',
+          }
+        }
+      },
+      2024: {
+        1: {
+          1: {
+            title: '新年第一天(●⁰౪⁰●)',
+            content: '在她家醒來～\n先去她家樓下拉亞漢堡買早餐\n結果發現一堆外送員圍在櫃檯，店員超緊張的樣子\n等了20多分鐘後拿給我，他的手竟然在抖(幫QQ)\n後來待到下午4點多她就送我到新埔搭車～',
+            memorialDay: true
+          },
+          3: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '約會ㄘ八方XD',
+          },
+          5: {
+            title: 'ㄘ飯(っ˘ڡ˘ς)',
+            content: '晚上約會ㄘMo-Mo-Paradise 台北京站牧場，好ㄘ',
+          },
+          7: {
+            title: '約會(◍•ᴗ•◍)❤',
+            content: '今天去了貓欸Camulet貓咪主題餐廳，貓咪好可愛！\n到店裡沒多久，一隻叫做小女森的小貓就坐到我腿上，理完毛之後就睡著了XD\n腿麻就慢慢喬位子，貓咪放飯之後就跑去吃了\n後來一隻叫小智的母貓也來我腿上睡覺XD\n她那邊只能靠貓咪零食誘拐嘻嘻\n最後離開前在廁所那邊看到籤筒，她抽到中吉，我抽到大吉～',
+          },
+          // 31: {
+          //   title: '約會(◍•ᴗ•◍)❤ㄘ飯(っ˘ڡ˘ς)',
+          //   content: 'RRRR',
+          // },
+        }
+      }
+    })
     return {
+      fakeData,
+      secretData,
     }
   },
   methods: {
@@ -35,22 +448,6 @@ export default {
 
 <style lang="scss" module>
 .main {
-  background: black;
-  .box {
-    width: 300px;
-    height: 1000px;
-    &.green {
-      background-color: green;
-    }
-    &.blue {
-      background-color: navy;
-    }
-    &.red {
-      background-color: red;
-    }
-    &.yellow {
-      background-color: darkgoldenrod;
-    }
-  }
+  background-color: var(--bgPrimary);
 }
 </style>
