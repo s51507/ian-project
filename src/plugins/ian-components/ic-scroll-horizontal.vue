@@ -34,10 +34,13 @@ export default {
     },
     addWheelScrollEvent() {
       document.body.style.overflow = 'hidden'
+      // apple的橡皮筋效果
+      document.body.style['overscroll-behavior'] = 'none'
       window.addEventListener('wheel', this.mainAreaScroll, false)
     },
     removeWheelScrollEvent() {
       document.body.style.overflow = ''
+      document.body.style['overscroll-behavior'] = ''
       window.removeEventListener('wheel', this.mainAreaScroll, false)
     },
     decideAddWheelScrollEvent(e) {
@@ -92,7 +95,6 @@ export default {
   max-height: 100vh;
   max-width: 100vw;
   overflow: hidden;
-  background: black;
   & > .container {
     display: inline-flex;
   }
