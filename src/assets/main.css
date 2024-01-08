@@ -34,7 +34,7 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   body {
     display: flex;
     place-items: center;
@@ -43,6 +43,23 @@ a,
   #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* padding: 0 2rem; */
   }
+} */
+
+/* // 手寫英文字體 */
+@font-face {
+  font-family: 'Shirokuma-Regular';
+  src: url('@/assets/font/Shirokuma-Regular.otf') format("truetype");
+}
+
+/* // 手寫日文中文字體 - 有些字顯示不出來 ex:呦 */
+@font-face {
+  font-family: 'SNsanafonJ30';
+  src: url('@/assets/font/SNsanafonJ30.ttf') format("truetype");
+}
+
+/* // 手寫中英文字體 - 都可以用！ */
+@font-face {
+  font-family: 'JasonHandwriting2';
+  src: url('@/assets/font/JasonHandwriting2-Regular.woff2') format("woff2");
 }
