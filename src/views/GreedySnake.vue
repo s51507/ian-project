@@ -18,6 +18,18 @@
         <input v-model="mute" type="checkbox" />
       </div>
       <div :class="$style.row">
+        <div>咬到自己要不要結束遊戲</div>
+        <input v-model="biteSelf" type="checkbox" />
+      </div>
+      <div :class="$style.row">
+        <div>G8模式</div>
+        <input v-model="g8Mode" type="checkbox" />
+      </div>
+      <div :class="$style.row">
+        <div>G8模式時間間隔（秒）</div>
+        <input v-model="g8ModeTime" />
+      </div>
+      <div :class="$style.row">
         <div>block寬度</div>
         <input v-model="bw" />
       </div>
@@ -29,10 +41,10 @@
         <div>長寬各有幾個格子</div>
         <input v-model="gameWidth" />
       </div>
-      <!-- <div :class="$style.row">
-        <div>速度</div>
-        <input v-model="speed" />
-      </div> -->
+      <div :class="$style.row">
+        <div>蛇蛇初始長度</div>
+        <input v-model="snakeInitialLength" />
+      </div>
       <div :class="$style.row">
         <div>基礎速度</div>
         <input v-model="baseSpeed" />
@@ -41,7 +53,7 @@
         <div>食物數量</div>
         <input v-model="foodCount" />
       </div>
-      <IcBtn :class="$style.btn" @click="updateGameConfig"> 重新開始 </IcBtn>
+      <IcBtn :class="$style.btn" color="white" @click="updateGameConfig"> 套用設定 </IcBtn>
     </div>
   </div>
 </template>
@@ -59,6 +71,10 @@ export default {
     const foodCount = ref(20) // 食物數量
     const borderless = ref(false) // 無邊界模式（撞牆不會死
     const mute = ref(true) // 靜音
+    const biteSelf = ref(true) // 咬到自己要不要結束遊戲
+    const snakeInitialLength = ref(5) // 蛇蛇初始長度
+    const g8Mode = ref(false) // 會隨機換方向
+    const g8ModeTime = ref(5) // 要幾秒隨機一次
     const game = ref(null)
 
     return {
@@ -69,6 +85,10 @@ export default {
       foodCount,
       borderless,
       mute,
+      biteSelf,
+      snakeInitialLength,
+      g8Mode,
+      g8ModeTime,
       game,
     }
   },
@@ -83,6 +103,10 @@ export default {
         targetPanel: `.${this.$style.panel}`,
         borderless: this.borderless,
         mute: this.mute,
+        biteSelf: this.biteSelf,
+        snakeInitialLength: this.snakeInitialLength,
+        g8Mode: this.g8Mode,
+        g8ModeTime: this.g8ModeTime,
       }
     }
   },

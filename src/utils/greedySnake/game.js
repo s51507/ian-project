@@ -8,6 +8,7 @@ export default class Game {
   }
 
   setConfig(conf, isInit = false) {
+    clearInterval(this.g8ModeInterval)
     const config = {
       bw: 12,
       bs: 2,
@@ -18,6 +19,10 @@ export default class Game {
       targetPanel: '.panel',
       borderless: false,
       mute: true,
+      biteSelf: true,
+      snakeInitialLength: 5,
+      g8Mode: false,
+      g8ModeTime: 5,
       ...conf
     }
     this.bw = Number(config.bw) // block寬度
@@ -29,7 +34,12 @@ export default class Game {
     this.targetPanel = config.targetPanel
     this.borderless = config.borderless
     this.mute = config.mute
-    this.snake = new Snake()
+    this.biteSelf = config.biteSelf
+    this.snakeInitialLength = config.snakeInitialLength
+    this.g8Mode = config.g8Mode
+    this.g8ModeTime = config.g8ModeTime
+    this.g8ModeInterval = null
+    this.snake = new Snake(this.snakeInitialLength)
     this.foods = []
     this.start = false
     this.init()
@@ -71,8 +81,11 @@ export default class Game {
 
   startGame() {
     this.start = true
-    this.snake = new Snake() // 遊戲開始都會產生新的蛇
+    this.snake = new Snake(this.snakeInitialLength) // 遊戲開始都會產生新的蛇
     document.querySelector(this.targetPanel).style.display = 'none'
+    if (this.g8Mode) {
+      this.g8ModeInterval = setInterval(() => this.g8ModeEvent(), this.g8ModeTime * 1000)
+    }
     this.update()
     this.playSound('C#5', -20)
     this.playSound('E5', -20, 200)
@@ -80,8 +93,11 @@ export default class Game {
 
   endGame() {
     this.start = false
+    const eatenCount = this.snake.body.length - this.snakeInitialLength
+    const score = (eatenCount < 0) ? 0 : eatenCount * 10
     document.querySelector(this.targetPanel).style.display = ''
-    document.querySelector('h2').textContent = `Score: ${(this.snake.body.length - 5) * 10}`
+    document.querySelector('h2').textContent = `Score: ${score}`
+    clearInterval(this.g8ModeInterval)
     this.playSound('A3')
     this.playSound('E2', -10, 200)
     this.playSound('A2', -10, 400)
@@ -107,6 +123,9 @@ export default class Game {
       if (this.borderless) this.snake.setNewHead(this.gameWidth)
       else this.endGame()
     }
+    // 咬到自己也結束遊戲
+    if (this.biteSelf && this.snake.checkBiteSelf()) this.endGame()
+
     this.speed = Math.sqrt(this.snake.body.length) + this.baseSpeed
     setTimeout(() => {
       this.update()
@@ -170,5 +189,11 @@ export default class Game {
       synth.volume.value= volume
       synth.triggerAttackRelease(note, '8n')
     }, when) // 第一個參數:音符，第二個參數:聲音持續時間
+  }
+
+  g8ModeEvent() {
+    const directionList = ['Up', 'Down', 'Left', 'Right']
+    const direction = directionList[parseInt(Math.random() * directionList.length)]
+    this.snake.setDirection(direction)
   }
 }
