@@ -20,6 +20,7 @@ const router = createRouter({
     { path: '/uikit', name: 'uikit', component: () => import('@/views/UiKit.vue') },
     { path: '/test', name: 'test', component: () => import('@/views/TestPage.vue') },
     { path: '/nothing', name: 'nothing', component: () => import('@/views/NothingPage.vue') },
+    { path: '/snake', name: 'snake', component: () => import('@/views/GreedySnake.vue') },
   ]
 })
 
