@@ -25,10 +25,30 @@ export default class Snake {
   setDirection(dir) {
     let target
     switch (dir) {
-      case 'Up': target = new Vector(0, -1); break
-      case 'Down': target = new Vector(0, 1); break
-      case 'Left': target = new Vector(-1, 0); break
-      case 'Right': target = new Vector(1, 0); break
+      case 'ㄊ':
+      case 'w':
+      case 'W':
+      case 'Up':
+        target = new Vector(0, -1)
+        break
+      case 'ㄋ':
+      case 's':
+      case 'S':
+      case 'Down':
+        target = new Vector(0, 1)
+        break
+      case 'ㄇ':
+      case 'a':
+      case 'A':
+      case 'Left':
+        target = new Vector(-1, 0)
+        break
+      case 'ㄎ':
+      case 'd':
+      case 'D':
+      case 'Right':
+        target = new Vector(1, 0)
+        break
       default:
         return
     }
