@@ -11,6 +11,7 @@
         <RouterLink to="/uikit">UiKit</RouterLink>
         <RouterLink to="/test">Test</RouterLink>
         <RouterLink to="/nothing">Nothing</RouterLink>
+        <RouterLink to="/snake">貪吃蛇</RouterLink>
       </nav>
     </div>
   </header>

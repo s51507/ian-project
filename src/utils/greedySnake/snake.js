@@ -1,10 +1,10 @@
 import Vector from './vector.js'
 
 export default class Snake {
-  constructor() {
+  constructor(initialLength) {
     // 身體用陣列存
     this.body = []
-    this.maxLength = 5
+    this.maxLength = initialLength
     this.head = new Vector()
     this.nextHead = new Vector(1, 0)
     this.direction = 'Right'
@@ -64,6 +64,11 @@ export default class Snake {
     const xRange = 0 <= this.head.x && this.head.x < gameWidth
     const yRange = 0 <= this.head.y && this.head.y < gameWidth
     return xRange && yRange
+  }
+
+  // 傻逼咬自己
+  checkBiteSelf() {
+    return this.body.some(e => this.head.equal(e))
   }
 
   // 無邊界模式要穿越邊框
