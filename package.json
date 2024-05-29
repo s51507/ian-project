@@ -12,6 +12,7 @@
     "replace-dynamic": "node system_utils/replace-dynamic.js"
   },
   "dependencies": {
+    "@vueuse/motion": "^2.0.0",
     "pinia": "^2.0.26",
     "tone": "13.8.25",
     "vue": "^3.2.45",

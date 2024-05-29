@@ -90,6 +90,14 @@ export default {
             content: 'content',
           }
         }
+      },
+      2023: {
+        1: {
+          3: {
+            title: 'test',
+            content: 'test',
+          }
+        }
       }
     })
     return {
