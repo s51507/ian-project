@@ -12,7 +12,7 @@
                   <template v-for="d in m.days" :key="d.day">
                     <div :class="[$style.dot, {[$style.hasEvent]: d.title}, d.className]" @click="handleDayClick(d)">
                       <div :class="$style.date">{{ d.day }}</div>
-                      <div v-if="d.title" :class="$style.dayTitle">{{ d.title }}</div>
+                      <div v-if="d.title" :class="$style.dayTitle" v-motion-roll-visible-top>{{ d.title }}</div>
                     </div>
                   </template>
                 </div>

@@ -157,8 +157,8 @@ export default {
     textFail: '#CB0202',
     textFailLighter: '#FF3B3B',
     textOther: '#BBBBBB',
-    textWhite: '#1E1F24',
-    textBlack: '#FFFFFF',
+    textWhite: '#FFFFFF',
+    textBlack: '#000000',
 
     sideNavBgPrimary: '#1E1F24',
     sideNavBgSecondary: '#26292E',

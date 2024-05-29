@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { MotionPlugin } from '@vueuse/motion'
+
 
 import ColorsGenerator from '@/theme/colorsGenerator'
 import themeColor from '@/theme/4C9EEA.js'
@@ -22,6 +24,7 @@ app.config.globalProperties.$colors = theme
 
 app.use(createPinia())
 app.use(router)
+app.use(MotionPlugin)
 
 app.directive('ripple', Ripple)
 
