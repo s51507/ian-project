@@ -4,6 +4,10 @@
       <div :class="$style.name">DayAndNightSwitch <a href="https://uiverse.io/Galahhad/strong-squid-82" target="_blank">https://uiverse.io/Galahhad/strong-squid-82</a></div>
       <DayAndNightSwitch />
     </div>
+    <div :class="$style.component">
+      <div :class="$style.name">GlitchEffectText <a href="https://uiverse.io/andrew-demchenk0/silent-earwig-10" target="_blank">https://uiverse.io/andrew-demchenk0/silent-earwig-10</a></div>
+      <GlitchEffectText text="Loading..................................." width="200px" />
+    </div>
   </div>
 </template>
 <script>
@@ -13,13 +17,15 @@
 // import { storeToRefs } from 'pinia'
 // import useGlobalStore from '@/stores/global'
 
-import DayAndNightSwitch from '@/plugins/web-components/DayAndNightSwitch.vue'
+import DayAndNightSwitch from '@/plugins/web-components/switch/DayAndNightSwitch.vue'
+import GlitchEffectText from '@/plugins/web-components/text/GlitchEffectText.vue'
 
 export default {
   props: {
   },
   components: {
     DayAndNightSwitch,
+    GlitchEffectText,
   },
   setup() {
 
