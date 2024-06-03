@@ -17,7 +17,8 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('@/views/AboutView.vue')
     },
-    { path: '/uikit', name: 'uikit', component: () => import('@/views/UiKit.vue') },
+    { path: '/icUiKit', name: 'icUiKit', component: () => import('@/views/IcUiKit.vue') },
+    { path: '/webUiKit', name: 'webUiKit', component: () => import('@/views/WebUiKit.vue') },
     { path: '/test', name: 'test', component: () => import('@/views/TestPage.vue') },
     { path: '/nothing', name: 'nothing', component: () => import('@/views/NothingPage.vue') },
     { path: '/snake', name: 'snake', component: () => import('@/views/GreedySnake.vue') },

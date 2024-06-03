@@ -8,7 +8,8 @@
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/uikit">UiKit</RouterLink>
+        <RouterLink to="/icUiKit">IcUiKit</RouterLink>
+        <RouterLink to="/webUiKit">WebUiKit</RouterLink>
         <RouterLink to="/test">Test</RouterLink>
         <RouterLink to="/nothing">Nothing</RouterLink>
         <RouterLink to="/snake">貪吃蛇</RouterLink>
