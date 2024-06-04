@@ -14,6 +14,10 @@
       <LeapingPlaceholder v-model="leapingPlaceholderText" placeholder="請輸入帳號" startFromEnd />
       <div> {{ leapingPlaceholderText }}</div>
     </div>
+    <div :class="$style.component">
+      <div :class="$style.name">RippleCircle <a href="https://uiverse.io/Codecite/witty-falcon-85" target="_blank">https://uiverse.io/Codecite/witty-falcon-85</a></div>
+      <RippleCircle count="4" />
+    </div>
   </div>
 </template>
 <script>
@@ -26,6 +30,7 @@ import { ref, reactive, getCurrentInstance } from 'vue'
 import DayAndNightSwitch from '@/plugins/web-components/switch/DayAndNightSwitch.vue'
 import GlitchEffectText from '@/plugins/web-components/text/GlitchEffectText.vue'
 import LeapingPlaceholder from '@/plugins/web-components/input/LeapingPlaceholder.vue'
+import RippleCircle from '@/plugins/web-components/loading/RippleCircle.vue'
 
 export default {
   props: {
@@ -34,6 +39,7 @@ export default {
     DayAndNightSwitch,
     GlitchEffectText,
     LeapingPlaceholder,
+    RippleCircle,
   },
   setup() {
     const leapingPlaceholderText = ref('')
