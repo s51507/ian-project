@@ -7,6 +7,7 @@
     <div :class="$style.component">
       <div :class="$style.name">GlitchEffectText <a href="https://uiverse.io/andrew-demchenk0/silent-earwig-10" target="_blank">https://uiverse.io/andrew-demchenk0/silent-earwig-10</a></div>
       <GlitchEffectText text="Loading..................................." width="200px" />
+      <GlitchEffectText text="Loading..................................." width="200px" beforeColor="#FF8B00" afterColor="#57E500" />
     </div>
     <div :class="$style.component">
       <div :class="$style.name">LeapingPlaceholder <a href="https://uiverse.io/foxyyyyyyyyyyyyy/stupid-firefox-22" target="_blank">https://uiverse.io/andrew-demchenk0/silent-earwig-10</a></div>

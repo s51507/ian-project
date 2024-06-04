@@ -15,7 +15,19 @@ export default {
     width: {
       type: [String, Number],
       default: 'auto',
-    }
+    },
+    fontColor: {
+      type: String,
+      default: '#FFFFFF'
+    },
+    beforeColor: {
+      type: String,
+      default: '#8B00FF'
+    },
+    afterColor: {
+      type: String,
+      default: '#00E571'
+    },
   },
   setup() {
     return {
@@ -25,6 +37,9 @@ export default {
     mainStyle() {
       return {
         width: isNaN(this.width) ? this.width : `${this.width}px`,
+        '--glitchFontColor': this.fontColor,
+        '--glitchBeforeColor': this.beforeColor,
+        '--glitchAfterColor': this.afterColor,
       }
     }
   },
@@ -39,7 +54,7 @@ export default {
   font-size: 25px;
   font-weight: 700;
   line-height: 1.2;
-  color: #fff;
+  color: var(--glitchFontColor);
   letter-spacing: 5px;
   z-index: 1;
   animation: shift 1s ease-in-out infinite alternate;
@@ -57,13 +72,13 @@ export default {
 
 .glitch:before {
   animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-  color: #8b00ff;
+  color: var(--glitchBeforeColor);
   z-index: -1;
 }
 
 .glitch:after {
   animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
-  color: #00e571;
+  color: var(--glitchAfterColor);
   z-index: -2;
 }
 
