@@ -5,6 +5,11 @@
       <DayAndNightSwitch />
     </div>
     <div :class="$style.component">
+      <div :class="$style.name">SmileSwitch <a href="https://uiverse.io/Shoh2008/average-monkey-56" target="_blank">https://uiverse.io/Shoh2008/average-monkey-56</a></div>
+      <SmileSwitch v-model="smileSwitchValue" width="100" />
+      <div>{{ smileSwitchValue }}</div>
+    </div>
+    <div :class="$style.component">
       <div :class="$style.name">GlitchEffectText <a href="https://uiverse.io/andrew-demchenk0/silent-earwig-10" target="_blank">https://uiverse.io/andrew-demchenk0/silent-earwig-10</a></div>
       <GlitchEffectText text="Loading..................................." width="200px" />
       <GlitchEffectText text="Loading..................................." width="200px" beforeColor="#FF8B00" afterColor="#57E500" />
@@ -22,14 +27,18 @@
 </template>
 <script>
 // 一般狀態
-import { ref, reactive, getCurrentInstance } from 'vue'
+import { ref } from 'vue'
 // import { UPDATE_IS_DARK } from '@/stores/constant'
 // import { storeToRefs } from 'pinia'
 // import useGlobalStore from '@/stores/global'
 
 import DayAndNightSwitch from '@/plugins/web-components/switch/DayAndNightSwitch.vue'
+import SmileSwitch from '@/plugins/web-components/switch/SmileSwitch.vue'
+
 import GlitchEffectText from '@/plugins/web-components/text/GlitchEffectText.vue'
+
 import LeapingPlaceholder from '@/plugins/web-components/input/LeapingPlaceholder.vue'
+
 import RippleCircle from '@/plugins/web-components/loading/RippleCircle.vue'
 
 export default {
@@ -37,14 +46,17 @@ export default {
   },
   components: {
     DayAndNightSwitch,
+    SmileSwitch,
     GlitchEffectText,
     LeapingPlaceholder,
     RippleCircle,
   },
   setup() {
     const leapingPlaceholderText = ref('')
+    const smileSwitchValue = ref(false)
     return {
       leapingPlaceholderText,
+      smileSwitchValue,
     }
   },
   methods: {
