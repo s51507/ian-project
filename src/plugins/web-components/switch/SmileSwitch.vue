@@ -91,6 +91,7 @@ export default {
   box-shadow: 0 6px 7px rgba(0,0,0,0.3);
   outline: none;
   margin: 0;
+  pointer-events: none;
 }
 
 .smile-swich-main .smile-swich-check input[type="checkbox"]:checked {
