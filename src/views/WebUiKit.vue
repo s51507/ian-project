@@ -10,6 +10,11 @@
       <div>{{ smileSwitchValue }}</div>
     </div>
     <div :class="$style.component">
+      <div :class="$style.name">PowerSwitch <a href="https://uiverse.io/vinodjangid07/quick-moth-22" target="_blank">https://uiverse.io/vinodjangid07/quick-moth-22</a></div>
+      <PowerSwitch v-model="powerSwitchValue" size="100" />
+      <div>{{ powerSwitchValue }}</div>
+    </div>
+    <div :class="$style.component">
       <div :class="$style.name">GlitchEffectText <a href="https://uiverse.io/andrew-demchenk0/silent-earwig-10" target="_blank">https://uiverse.io/andrew-demchenk0/silent-earwig-10</a></div>
       <GlitchEffectText text="Loading..................................." width="200px" />
       <GlitchEffectText text="Loading..................................." width="200px" beforeColor="#FF8B00" afterColor="#57E500" />
@@ -34,6 +39,7 @@ import { ref } from 'vue'
 
 import DayAndNightSwitch from '@/plugins/web-components/switch/DayAndNightSwitch.vue'
 import SmileSwitch from '@/plugins/web-components/switch/SmileSwitch.vue'
+import PowerSwitch from '@/plugins/web-components/switch/PowerSwitch.vue'
 
 import GlitchEffectText from '@/plugins/web-components/text/GlitchEffectText.vue'
 
@@ -47,6 +53,7 @@ export default {
   components: {
     DayAndNightSwitch,
     SmileSwitch,
+    PowerSwitch,
     GlitchEffectText,
     LeapingPlaceholder,
     RippleCircle,
@@ -54,9 +61,12 @@ export default {
   setup() {
     const leapingPlaceholderText = ref('')
     const smileSwitchValue = ref(false)
+    const powerSwitchValue = ref(false)
+
     return {
       leapingPlaceholderText,
       smileSwitchValue,
+      powerSwitchValue,
     }
   },
   methods: {
