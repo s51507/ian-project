@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header v-if="showHeader">
     <img alt="Vue logo" :class="$style.logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div :class="$style.wrapper">
@@ -13,6 +13,7 @@
         <RouterLink to="/test">Test</RouterLink>
         <RouterLink to="/nothing">Nothing</RouterLink>
         <RouterLink to="/snake">貪吃蛇</RouterLink>
+        <RouterLink to="/workTest">workTest</RouterLink>
       </nav>
     </div>
   </header>
@@ -36,6 +37,16 @@ export default {
     const globalStore = useGlobalStore()
     return {
       globalStore,
+    }
+  },
+  computed: {
+    showHeader() {
+      return !this.$route.meta.noShowHeader
+    }
+  },
+  watch: {
+    showHeader() {
+      document.querySelector('#app').setAttribute('show-header', this.showHeader)
     }
   },
   methods: {

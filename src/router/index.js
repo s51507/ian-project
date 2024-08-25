@@ -22,6 +22,7 @@ const router = createRouter({
     { path: '/test', name: 'test', component: () => import('@/views/TestPage.vue') },
     { path: '/nothing', name: 'nothing', component: () => import('@/views/NothingPage.vue') },
     { path: '/snake', name: 'snake', component: () => import('@/views/GreedySnake.vue') },
+    { path: '/workTest', name: 'workTest', component: () => import('@/views/WorkTest/index.vue'), meta: { noShowHeader: true } },
   ]
 })
 
