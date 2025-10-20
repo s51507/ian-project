@@ -13,6 +13,7 @@
         <RouterLink to="/test">Test</RouterLink>
         <RouterLink to="/nothing">Nothing</RouterLink>
         <RouterLink to="/snake">貪吃蛇</RouterLink>
+        <RouterLink to="/nanoleaf">Nanoleaf</RouterLink>
       </nav>
     </div>
   </header>

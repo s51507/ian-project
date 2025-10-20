@@ -22,6 +22,7 @@ const router = createRouter({
     { path: '/test', name: 'test', component: () => import('@/views/TestPage.vue') },
     { path: '/nothing', name: 'nothing', component: () => import('@/views/NothingPage.vue') },
     { path: '/snake', name: 'snake', component: () => import('@/views/GreedySnake.vue') },
+    { path: '/nanoleaf', name: 'nanoleaf', component: () => import('@/views/Nanoleaf.vue') },
   ]
 })
 
